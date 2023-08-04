@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Stack, Typography } from "@mui/material";
 import CategoryAccordion from "./category-accordion";
 
-import { HOME_CATEGORIES as categories } from "@/shared/constants/constants";
+import { HOME_CATEGORIES } from "@/shared/constants/constants";
 
 const CategoriesMenu = () => {
   return (
@@ -27,7 +27,7 @@ const CategoriesMenu = () => {
       >
         Categories
       </Typography>
-      {categories.map((category) => {
+      {HOME_CATEGORIES.map((category) => {
         if (category?.subCategories?.length > 0) {
           return <CategoryAccordion key={category?.id} category={category} />;
         } else {

@@ -13,6 +13,7 @@ import {
   TrophyIcon,
   WheelIcon,
 } from "../icons/category-icons";
+import { ShoppingBagOutlined } from "@mui/icons-material";
 
 export const HOME_CATEGORIES = [
   {
@@ -213,3 +214,43 @@ export const HOME_CATEGORIES = [
 ];
 
 export const DRAWER_WIDTH: number = 240;
+
+export const PROFILE_GROUPS = ["Dashboard", "Account Settings"];
+export const PROFILE_ITEMS = [
+  {
+    name: "Orders",
+    icon: ShoppingBagOutlined,
+    group: "Dashboard",
+    route: "orders",
+  },
+  {
+    name: "WishList",
+    icon: ShoppingBagOutlined,
+    group: "Dashboard",
+    route: "wishlist",
+  },
+  {
+    name: "Support Tickets",
+    icon: ShoppingBagOutlined,
+    group: "Dashboard",
+    route: "support-tickets",
+  },
+  {
+    name: "Profile Info",
+    icon: ShoppingBagOutlined,
+    group: "Account Settings",
+    route: "",
+  },
+  {
+    name: "Addresses",
+    icon: ShoppingBagOutlined,
+    group: "Account Settings",
+    route: "addresses",
+  },
+  {
+    name: "Payment Methods",
+    icon: ShoppingBagOutlined,
+    group: "Account Settings",
+    route: "payment-methods",
+  },
+];

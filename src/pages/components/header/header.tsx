@@ -6,11 +6,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LoginIcon from "@mui/icons-material/Login";
 import {
   Badge,
   Container,
   Slide,
   Stack,
+  Typography,
   useScrollTrigger,
 } from "@mui/material";
 
@@ -26,18 +29,20 @@ export default function Header({ handleDrawerToggle }: Props) {
   function HideOnScroll(props: ChildrenElement) {
     const { children } = props;
 
-    const trigger = useScrollTrigger({
+    const trigger1 = useScrollTrigger();
+
+    const trigger2 = useScrollTrigger({
       disableHysteresis: true,
       threshold: 0,
     });
 
     return React.cloneElement(
-      <Slide appear={false} direction="down" in={!trigger}>
+      <Slide appear={false} direction="down" in={!trigger1}>
         {children}
       </Slide>,
       {
         sx: {
-          boxShadow: trigger ? "rgba(43, 52, 69, 0.1) 0px 4px 16px" : "none",
+          boxShadow: trigger2 ? "rgba(43, 52, 69, 0.1) 0px 4px 16px" : "none",
         },
       }
     );
@@ -46,14 +51,7 @@ export default function Header({ handleDrawerToggle }: Props) {
   return (
     <>
       <HideOnScroll>
-        <AppBar
-          position="fixed"
-          color="inherit"
-          elevation={0}
-          sx={{
-            ml: { sm: `${drawerWidth}px` },
-          }}
-        >
+        <AppBar position="fixed" color="inherit" elevation={0}>
           <Container>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Toolbar
@@ -72,7 +70,25 @@ export default function Header({ handleDrawerToggle }: Props) {
                   <MenuIcon />
                 </IconButton>
 
-                <Box>Complete Ecommerce</Box>
+                <Box
+                  sx={{ display: "flex", fontSize: 18, alignItems: "center" }}
+                >
+                  <ShoppingCartIcon
+                    sx={{
+                      mr: 1,
+                      color: "primary.main",
+                    }}
+                  />
+                  <Typography
+                    sx={{
+                      fontWeight: 500,
+                    }}
+                    component="h1"
+                    variant="h6"
+                  >
+                    E-Commerce
+                  </Typography>
+                </Box>
 
                 {/* Flex Grow of 1 on paper is making it full width */}
                 <SearchField />

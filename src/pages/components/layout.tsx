@@ -86,6 +86,7 @@ export default function RootLayout({ children }: ChildrenNode) {
         sx={{
           flexGrow: 1,
           p: 3,
+          height: "1000vh",
         }}
       >
         <Toolbar />
