@@ -4,7 +4,7 @@ Welcome to Complete Ecommerce! This is a Next.js application built with version 
 
 ## Live Demo
 
-Check out the live demo of the application: [Complete Ecommerce](https://homelet-inn.co.uk)
+Check out the live demo of the application: [Complete Ecommerce](https://ecommerce-client.co.uk)
 
 ## Project Structure
 
@@ -73,13 +73,13 @@ To prevent naming conflicts between components and types, a specific naming conv
 1. Clone the repository
 
 ```
-git clone https://github.com/your-username/homelet-inn.git
+git clone https://github.com/imranDev20/ecommerce-client.git
 ```
 
 2. Navigate to the project directory
 
 ```
-cd homelet-inn
+cd ecommerce-client
 ```
 
 3. Install dependencies
