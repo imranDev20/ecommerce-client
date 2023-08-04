@@ -72,18 +72,19 @@ To prevent naming conflicts between components and types, a specific naming conv
 
 1. Clone the repository
 
-```bash
+```
 git clone https://github.com/your-username/homelet-inn.git
 ```
 
 2. Navigate to the project directory
-```bash
+
+```
 cd homelet-inn
 ```
 
 3. Install dependencies
 
-```bash
+```
 cd npm install
 ```
 
