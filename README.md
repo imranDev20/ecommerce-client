@@ -1,39 +1,51 @@
 # Complete Ecommerce
 
-Welcome to Complete Ecommerce! This is a Next.js application built with version 13.4.8, utilizing the PageRouter for routing. The naming convention throughout the project follows kebab casing.
+Welcome to Complete Ecommerce! This is a Next.js application built with version 13.4.8, utilizing the Page Router for routing.
 
 ## Live Demo
 
 Check out the live demo of the application: [Complete Ecommerce](https://ecommerce-client.co.uk)
 
-## Project Structure
+## Libraries and Tools Used
 
-The project is organized using the following structure:
+This project utilizes the following libraries, tools, and technologies:
+
+- **TypeScript**: The entire project is developed using TypeScript, enhancing type safety and code quality.
+- **Redux Toolkit**: Used for state management.
+- **Material UI**: Used as the component library for styling and UI components.
+- **Stripe**: Integrated for payment processing.
+- **Pure React Carousel**: Utilized for creating slides and carousels.
+- **Axios**: Used for making HTTP requests.
+- **Node.js Server**: The project includes a Node.js server, providing a runtime environment for server-side logic.
+
+Feel free to copy and paste this updated "Libraries and Tools Used" section into your `README.md` file.
+
+
+## Project Structure
+The naming convention throughout the project follows kebab casing. The project is organized using the following structure:
 
 - src/
     - pages/
         - page-name/
             - components/
-            - component-name.js
+                - component-name.js
             - index.js
     - shared/
         - icons/
             - custom-icons.tsx
         - redux/
+            - (Redux Toolkit files)
         - services/
-            - http.ts
-            - products.ts
-            - users.ts
+            - http-requests.ts
         - types/
-            - userTypes.ts
-            - productTypes.ts
-            - globalTypes.ts
+            - example-types.ts
         - utils/
+            - utility-function.ts
     - images/
         - example.svg
+- (Other project files)
 
-
-Explanation of the structure:
+### Explanation of the structure:
 
 - `src/`: The root directory of the source code.
   - `pages/`: Contains the different pages of the application.
@@ -43,23 +55,16 @@ Explanation of the structure:
       - `index.js`: Main file for this page.
   - `shared/`: Shared code and resources.
     - `icons/`: Custom icon components.
-      - `custom-icons.tsx`: Example custom icon component.
     - `redux/`: Redux-related files.
     - `services/`: Service files for HTTP requests.
-      - `http.ts`: HTTP service.
-      - `products.ts`: Products service.
-      - `users.ts`: Users service.
     - `types/`: TypeScript type definitions.
-      - `userTypes.ts`: User-related types.
-      - `productTypes.ts`: Product-related types.
-      - `globalTypes.ts`: Global types.
     - `utils/`: Utility functions or modules.
   - `images/`: Image assets used in the application.
 
 
-Each page in the `pages` directory contains a `components` folder where the components specific to that page are kept. This structure helps maintain a clean separation of concerns and keeps components organized.
+Each page in the `pages` directory contains a `components` folder where the components specific to that page are kept. This structure helps maintain a clean separation of concerns and keeps components organized. The `components` folder inside the root of the page directory is used to keep all the components for the root index.tsx file, so basically all the components in the home page.
 
-## Material-UI v5
+## Material UI v5
 
 The project is built using Material-UI (MUI) version 5. MUI provides a powerful and flexible way to style your components while following the latest design guidelines.
 
@@ -94,4 +99,4 @@ cd npm install
 npm run dev
 ```
 
-The application will now be accessible at http://localhost:3000.
+The application will now be accessible at http://localhost:3000
