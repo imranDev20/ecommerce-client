@@ -10,11 +10,51 @@ Check out the live demo of the application: [Complete Ecommerce](https://homelet
 
 The project is organized using the following structure:
 
-- pages/
-  - page-name/
-    - components/
-      - component-name.js
-    - index.js
+- src/
+    - pages/
+        - page-name/
+            - components/
+            - component-name.js
+            - index.js
+    - shared/
+        - icons/
+            - custom-icons.tsx
+        - redux/
+        - services/
+            - http.ts
+            - products.ts
+            - users.ts
+        - types/
+            - userTypes.ts
+            - productTypes.ts
+            - globalTypes.ts
+        - utils/
+    - images/
+        - example.svg
+
+
+Explanation of the structure:
+
+- `src/`: The root directory of the source code.
+  - `pages/`: Contains the different pages of the application.
+    - `page-name/`: Specific page folder.
+      - `components/`: Components related to this page.
+        - `component-name.js`: Example component file.
+      - `index.js`: Main file for this page.
+  - `shared/`: Shared code and resources.
+    - `icons/`: Custom icon components.
+      - `custom-icons.tsx`: Example custom icon component.
+    - `redux/`: Redux-related files.
+    - `services/`: Service files for HTTP requests.
+      - `http.ts`: HTTP service.
+      - `products.ts`: Products service.
+      - `users.ts`: Users service.
+    - `types/`: TypeScript type definitions.
+      - `userTypes.ts`: User-related types.
+      - `productTypes.ts`: Product-related types.
+      - `globalTypes.ts`: Global types.
+    - `utils/`: Utility functions or modules.
+  - `images/`: Image assets used in the application.
 
 
 Each page in the `pages` directory contains a `components` folder where the components specific to that page are kept. This structure helps maintain a clean separation of concerns and keeps components organized.
@@ -29,17 +69,27 @@ To prevent naming conflicts between components and types, a specific naming conv
 
 ## Getting Started
 
+
+1. Clone the repository
+
 ```bash
-# Clone the repository
 git clone https://github.com/your-username/homelet-inn.git
+```
 
-# Navigate to the project directory
+2. Navigate to the project directory
+```bash
 cd homelet-inn
+```
 
-# Install dependencies
-npm install
+3. Install dependencies
 
-# Run the development server
+```bash
+cd npm install
+```
+
+4. Run the development server
+
+```
 npm run dev
 ```
 
