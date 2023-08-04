@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import { EmotionCache } from "@emotion/react";
 
-export type Children = {
+export type ChildrenNode = {
   children: React.ReactNode;
 };
 

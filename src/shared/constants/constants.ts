@@ -211,3 +211,5 @@ export const HOME_CATEGORIES = [
     subCategories: [],
   },
 ];
+
+export const DRAWER_WIDTH: number = 240;
