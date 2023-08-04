@@ -4,7 +4,7 @@ Welcome to Complete Ecommerce! This is a Next.js application built with version 
 
 ## Live Demo
 
-Check out the live demo of the application: [Complete Ecommerce](https://ecommerce-client.co.uk)
+Check out the live demo of the application: [Complete Ecommerce](https://ecommerce-client-one-hazel.vercel.app/)
 
 ## Libraries and Tools Used
 
@@ -18,7 +18,6 @@ This project utilizes the following libraries, tools, and technologies:
 - **Axios**: Used for making HTTP requests.
 - **Node.js Server**: The project includes a Node.js server, providing a runtime environment for server-side logic.
 
-Feel free to copy and paste this updated "Libraries and Tools Used" section into your `README.md` file.
 
 
 ## Project Structure
