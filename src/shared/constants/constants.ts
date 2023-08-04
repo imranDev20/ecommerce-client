@@ -20,28 +20,28 @@ export const HOME_CATEGORIES = [
     name: "Home",
     icon: HomeIcon,
     link: "https://bazaar.ui-lib.com/healthbeauty-shop",
-    subCatagory: [],
+    subCategories: [],
   },
   {
     id: "2",
     name: "Popular Product",
     icon: TrophyIcon,
     link: "https://bazaar.ui-lib.com/healthbeauty-shop",
-    subCatagory: [],
+    subCategories: [],
   },
   {
     id: "3",
     name: "Trending Product",
     icon: TrendIcon,
     link: "https://bazaar.ui-lib.com/healthbeauty-shop",
-    subCatagory: [],
+    subCategories: [],
   },
   {
     id: "4",
     name: "All Product",
     icon: AllProductsIcon,
     link: "https://bazaar.ui-lib.com/healthbeauty-shop",
-    subCatagory: [],
+    subCategories: [],
   },
   {
     id: "5",
@@ -49,7 +49,7 @@ export const HOME_CATEGORIES = [
     icon: MakeupIcon,
     link: "",
 
-    subCatagory: [
+    subCategories: [
       {
         id: "1",
         name: "Beauty Item",
@@ -72,7 +72,7 @@ export const HOME_CATEGORIES = [
     name: "Maskara",
     icon: MascaraIcon,
     link: "",
-    subCatagory: [
+    subCategories: [
       {
         id: "1",
         name: "Beauty Item",
@@ -95,7 +95,7 @@ export const HOME_CATEGORIES = [
     name: "Lotion",
     icon: LotionIcon,
     link: "",
-    subCatagory: [
+    subCategories: [
       {
         id: "1",
         name: "Beauty Item",
@@ -118,7 +118,7 @@ export const HOME_CATEGORIES = [
     name: "Makeup",
     icon: MakeupIcon,
     link: "",
-    subCatagory: [
+    subCategories: [
       {
         id: "1",
         name: "Beauty Item",
@@ -141,7 +141,7 @@ export const HOME_CATEGORIES = [
     name: "Powder",
     icon: PowderIcon,
     link: "",
-    subCatagory: [
+    subCategories: [
       {
         id: "1",
         name: "Beauty Item",
@@ -164,7 +164,7 @@ export const HOME_CATEGORIES = [
     name: "Face Mask",
     icon: FaceMaskIcon,
     link: "",
-    subCatagory: [
+    subCategories: [
       {
         id: "1",
         name: "Beauty Item",
@@ -187,27 +187,27 @@ export const HOME_CATEGORIES = [
     name: "Digital Thermometer",
     icon: ThermoMeterIcon,
     link: "https://bazaar.ui-lib.com/healthbeauty-shop",
-    subCatagory: [],
+    subCategories: [],
   },
   {
     id: "12",
     name: "Oxyzen Pump",
     icon: PumpIcon,
     link: "https://bazaar.ui-lib.com/healthbeauty-shop",
-    subCatagory: [],
+    subCategories: [],
   },
   {
     id: "13",
     name: "Lens Case Kit",
     icon: EyeglassIcon,
     link: "https://bazaar.ui-lib.com/healthbeauty-shop",
-    subCatagory: [],
+    subCategories: [],
   },
   {
     id: "14",
     name: "Automotive",
     icon: WheelIcon,
     link: "https://bazaar.ui-lib.com/healthbeauty-shop",
-    subCatagory: [],
+    subCategories: [],
   },
 ];

@@ -1,11 +1,11 @@
-import Layout from "./components/layout";
+import RootLayout from "./components/layout";
 import Hero from "./components/hero";
 import { Container, Grid } from "@mui/material";
 import CategoriesMenu from "./components/categories-menu";
 
 export default function Home() {
   return (
-    <Layout>
+    <RootLayout>
       <Hero />
       <Container>
         <Grid container spacing={3}>
@@ -17,6 +17,6 @@ export default function Home() {
           </Grid>
         </Grid>
       </Container>
-    </Layout>
+    </RootLayout>
   );
 }

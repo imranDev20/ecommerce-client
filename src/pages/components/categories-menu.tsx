@@ -28,7 +28,7 @@ const CategoriesMenu = () => {
         Categories
       </Typography>
       {categories.map((category) => {
-        if (category?.subCatagory?.length > 0) {
+        if (category?.subCategories?.length > 0) {
           return <CategoryAccordion key={category?.id} category={category} />;
         } else {
           return (
@@ -65,9 +65,9 @@ const CategoriesMenu = () => {
                   },
                 },
               }}
-              key={category.id}
+              key={category?.id}
             >
-              {category.name}
+              {category?.name}
             </Button>
           );
         }

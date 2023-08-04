@@ -13,11 +13,10 @@ This project utilizes the following libraries, tools, and technologies:
 - **TypeScript**: The entire project is developed using TypeScript, enhancing type safety and code quality.
 - **Redux Toolkit**: Used for state management.
 - **Material UI**: Used as the component library for styling and UI components.
+- **Socket.IO**: Implemented on real-time chat and support ticket functionality.
 - **Stripe**: Integrated for payment processing.
 - **Pure React Carousel**: Utilized for creating slides and carousels.
 - **Axios**: Used for making HTTP requests.
-- **Node.js Server**: The project includes a Node.js server, providing a runtime environment for server-side logic.
-
 
 
 ## Project Structure

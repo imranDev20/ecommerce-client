@@ -104,59 +104,56 @@ export default function CategoryAccordion({ category }: any) {
               transition: "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
             }}
           >
-            {category && category.name && category.name}
+            {category?.name}
           </Typography>
         </AccordionSummary>
 
-        {category &&
-          category.subCatagory &&
-          category.subCatagory.length > 0 &&
-          category.subCatagory.map((sub: any) => (
-            <AccordionDetails key={sub?.id} sx={{ p: 0 }}>
-              <ButtonBase
+        {category?.subCategories.map((subCategory: any) => (
+          <AccordionDetails key={subCategory?.id} sx={{ p: 0 }}>
+            <ButtonBase
+              sx={{
+                py: "10.75px",
+                width: "100%",
+                justifyContent: "start",
+                transition:
+                  "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+
+                "&:hover": {
+                  backgroundColor: "primary.light",
+
+                  "& .MuiTypography-root": {
+                    color: "primary.main",
+                  },
+                  "& .MuiBox-root": {
+                    backgroundColor: "primary.main",
+                  },
+                },
+              }}
+            >
+              <Box
                 sx={{
-                  py: "10.75px",
-                  width: "100%",
-                  justifyContent: "start",
+                  ml: 5,
+                  mr: 1.3,
+                  backgroundColor: "#7d879c",
                   transition:
                     "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-
-                  "&:hover": {
-                    backgroundColor: "primary.light",
-
-                    "& .MuiTypography-root": {
-                      color: "primary.main",
-                    },
-                    "& .MuiBox-root": {
-                      backgroundColor: "primary.main",
-                    },
-                  },
+                  height: 4,
+                  width: 4,
+                  borderRadius: 4,
+                }}
+              ></Box>
+              <Typography
+                sx={{
+                  fontSize: 14,
+                  color: "text.secondary",
+                  transition: "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 }}
               >
-                <Box
-                  sx={{
-                    ml: 5,
-                    mr: 1.3,
-                    backgroundColor: "#7d879c",
-                    transition:
-                      "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-                    height: 4,
-                    width: 4,
-                    borderRadius: 4,
-                  }}
-                ></Box>
-                <Typography
-                  sx={{
-                    fontSize: 14,
-                    color: "text.secondary",
-                    transition: "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-                  }}
-                >
-                  {sub?.name}
-                </Typography>
-              </ButtonBase>
-            </AccordionDetails>
-          ))}
+                {subCategory?.name}
+              </Typography>
+            </ButtonBase>
+          </AccordionDetails>
+        ))}
       </Accordion>
     </>
   );
