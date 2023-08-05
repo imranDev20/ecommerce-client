@@ -57,6 +57,7 @@ export default function Header({ handleDrawerToggle }: Props) {
                 disableGutters
                 sx={{
                   justifyContent: "space-between",
+                  py: 2,
                 }}
               >
                 <IconButton
@@ -96,9 +97,12 @@ export default function Header({ handleDrawerToggle }: Props) {
                 <SearchField />
 
                 <Stack direction="row" spacing={3}>
-                  <IconButton sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}>
-                    <PersonOutlineOutlinedIcon />
-                  </IconButton>
+                  <NextLink href="/profile">
+                    <IconButton sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}>
+                      <PersonOutlineOutlinedIcon />
+                    </IconButton>
+                  </NextLink>
+
                   <Badge
                     overlap="circular"
                     anchorOrigin={{ vertical: "top", horizontal: "right" }}

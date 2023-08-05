@@ -10,11 +10,12 @@ import {
 import ProfileLayout from "../components/layout";
 import Link from "next/link";
 import ProfileHeader from "../components/profile-header";
+import { PROFILE_ITEMS } from "@/shared/constants/constants";
 
 export default function AddMethodPage() {
   return (
     <ProfileLayout>
-      <ProfileHeader>
+      <ProfileHeader title="Add Payment Method" icon={PROFILE_ITEMS[5].icon}>
         <Button
           variant="contained"
           LinkComponent={Link}
