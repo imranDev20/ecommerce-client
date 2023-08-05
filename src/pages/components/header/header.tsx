@@ -7,7 +7,7 @@ import Toolbar from "@mui/material/Toolbar";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LoginIcon from "@mui/icons-material/Login";
+
 import {
   Badge,
   Container,
@@ -16,10 +16,9 @@ import {
   Typography,
   useScrollTrigger,
 } from "@mui/material";
-
-import { DRAWER_WIDTH as drawerWidth } from "@/shared/constants/constants";
 import { ChildrenElement } from "@/shared/types/globalTypes";
 import SearchField from "./search-field";
+import NextLink from "@/shared/components/next-link";
 
 type Props = {
   handleDrawerToggle: () => void;
@@ -70,25 +69,28 @@ export default function Header({ handleDrawerToggle }: Props) {
                   <MenuIcon />
                 </IconButton>
 
-                <Box
-                  sx={{ display: "flex", fontSize: 18, alignItems: "center" }}
-                >
-                  <ShoppingCartIcon
-                    sx={{
-                      mr: 1,
-                      color: "primary.main",
-                    }}
-                  />
-                  <Typography
-                    sx={{
-                      fontWeight: 500,
-                    }}
-                    component="h1"
-                    variant="h6"
+                <NextLink href="/">
+                  <Box
+                    sx={{ display: "flex", fontSize: 18, alignItems: "center" }}
                   >
-                    E-Commerce
-                  </Typography>
-                </Box>
+                    <ShoppingCartIcon
+                      sx={{
+                        mr: 1,
+                        color: "primary.main",
+                      }}
+                    />
+                    <Typography
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.primary",
+                      }}
+                      component="h1"
+                      variant="h6"
+                    >
+                      E-Commerce
+                    </Typography>
+                  </Box>
+                </NextLink>
 
                 {/* Flex Grow of 1 on paper is making it full width */}
                 <SearchField />

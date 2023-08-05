@@ -12,3 +12,8 @@ export type ChildrenElement = {
 export type CacheAppProps = AppProps & {
   emotionCache?: EmotionCache;
 };
+
+export type NextLinkProps = {
+  children: React.ReactNode;
+  href: string;
+};
