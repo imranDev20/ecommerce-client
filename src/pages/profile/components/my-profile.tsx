@@ -1,5 +1,6 @@
 import { Avatar, Box, Button, Grid, Paper, Typography } from "@mui/material";
 import ProfileHeader from "./profile-header";
+import Link from "next/link";
 
 type Props = {};
 export default function MyProfile({}: Props) {
@@ -75,7 +76,13 @@ export default function MyProfile({}: Props) {
   return (
     <>
       <ProfileHeader>
-        <Button variant="contained">Edit Profile</Button>
+        <Button
+          variant="contained"
+          LinkComponent={Link}
+          href="/profile/edit-profile"
+        >
+          Edit Profile
+        </Button>
       </ProfileHeader>
       <Box sx={{ marginBottom: "32px" }}>
         <Grid container spacing={3}>
@@ -145,7 +152,7 @@ export default function MyProfile({}: Props) {
             </Paper>
           </Grid>
           <Grid item md={6}>
-            <Grid container spacing={4}>
+            <Grid container spacing={3}>
               {orders.map((order) => (
                 <Grid key={order.id} item md={3}>
                   <Paper

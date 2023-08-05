@@ -7,11 +7,11 @@ import {
   Pagination,
   Typography,
 } from "@mui/material";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import EastIcon from "@mui/icons-material/East";
 import ProfileLayout from "../components/layout";
 import { ChangeEvent, useState } from "react";
 import ProfileHeader from "../components/profile-header";
+import Link from "next/link";
 
 const orders = [
   {
@@ -234,6 +234,8 @@ export default function OrdersPage({}: Props) {
 
             <IconButton
               aria-label="edit"
+              LinkComponent={Link}
+              href={`/profile/orders/${order.orderId}`}
               size="small"
               sx={{
                 position: "absolute",
