@@ -1,5 +1,5 @@
-import { Avatar, Box, Grid, Paper, Typography } from "@mui/material";
-import DynamicTitle from "./dynamic-title";
+import { Avatar, Box, Button, Grid, Paper, Typography } from "@mui/material";
+import ProfileHeader from "./profile-header";
 
 type Props = {};
 export default function MyProfile({}: Props) {
@@ -74,9 +74,9 @@ export default function MyProfile({}: Props) {
   ];
   return (
     <>
-      <Box>
-        <DynamicTitle />
-      </Box>
+      <ProfileHeader>
+        <Button variant="contained">Edit Profile</Button>
+      </ProfileHeader>
       <Box sx={{ marginBottom: "32px" }}>
         <Grid container spacing={3}>
           <Grid item md={6}>
