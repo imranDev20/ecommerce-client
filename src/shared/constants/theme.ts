@@ -1,7 +1,7 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { Open_Sans } from "next/font/google";
 
-const open_sans = Open_Sans({
+export const open_sans = Open_Sans({
   weight: ["300", "400", "500", "600", "700", "800"],
   style: ["normal", "italic"],
   subsets: ["latin"],

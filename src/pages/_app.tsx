@@ -5,9 +5,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { theme } from "@/shared/constants/theme";
 import { CacheAppProps } from "@/shared/types/globalTypes";
 import RootLayout from "./components/layout";
+import { CacheProvider } from "@emotion/react";
+import createEmotionCache from "@/shared/utils/createEmotionCache";
 
 // Client-side cache, shared for the whole session of the user in the browser.
-// const clientSideEmotionCache = createEmotionCache();
+const clientSideEmotionCache = createEmotionCache();
 
 /**
  * The root component that wraps the entire Next.js application.
@@ -26,11 +28,10 @@ import RootLayout from "./components/layout";
  */
 
 export default function App(props: CacheAppProps): JSX.Element {
-  // const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  const { Component, emotionCache, pageProps } = props;
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
@@ -42,6 +43,6 @@ export default function App(props: CacheAppProps): JSX.Element {
           <Component {...pageProps} />
         </RootLayout>
       </ThemeProvider>
-    </>
+    </CacheProvider>
   );
 }
