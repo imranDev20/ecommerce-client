@@ -16,8 +16,11 @@ import React from "react";
 import { PROFILE_GROUPS, PROFILE_ITEMS } from "@/shared/constants/constants";
 import { ShoppingBagOutlined } from "@mui/icons-material";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function ProfileLayout({ children }: ChildrenNode) {
+  const router = useRouter();
+
   return (
     <Container>
       <Grid container spacing={3}>
@@ -51,6 +54,11 @@ export default function ProfileLayout({ children }: ChildrenNode) {
                     (item) => (
                       <ListItem key={`item-${sectionId}-${item.name}`}>
                         <ListItemButton
+                          selected={
+                            item.route === ""
+                              ? router.pathname === "/profile"
+                              : router.pathname.includes(item.route)
+                          }
                           LinkComponent={Link}
                           href={`/profile/${item.route}`}
                         >

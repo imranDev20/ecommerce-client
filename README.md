@@ -15,6 +15,7 @@ This project utilizes the following libraries, tools, and technologies:
 - **Material UI**: Used as the component library for styling and UI components.
 - **Socket.IO**: Implemented on real-time chat and support ticket functionality.
 - **Stripe**: Integrated for payment processing.
+- **i18next**: Used for internationalization (i18n) support, enabling users to view the application in different languages.
 - **Pure React Carousel**: Utilized for creating slides and carousels.
 - **Axios**: Used for making HTTP requests.
 

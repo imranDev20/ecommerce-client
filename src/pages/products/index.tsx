@@ -1,3 +1,5 @@
+import RootLayout from "../components/layout";
+
 export default function ProductsPage() {
-  return <div>ProductsPage</div>;
+  return <RootLayout>ProductsPage</RootLayout>;
 }
