@@ -33,6 +33,8 @@ export default function App(props: CacheAppProps): JSX.Element {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
+        <title>Complete E-Commerce</title>
+        <meta name="description" content="Some example description" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
 

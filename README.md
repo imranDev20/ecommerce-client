@@ -1,6 +1,7 @@
 # Complete Ecommerce
 
-Welcome to Complete Ecommerce! This is a Next.js application built with version 13.4.8, utilizing the Page Router for routing.
+Welcome to Complete Ecommerce! This is a Next.js application built with version 13.4.8, utilizing the Page Router for routing. The design is inspired from the popular MUI Ecommerce template [Bazaar Pro](https://bazar-react.vercel.app/)
+
 
 ## Live Demo
 
@@ -63,9 +64,6 @@ The naming convention throughout the project follows kebab casing. The project i
 
 Each page in the `pages` directory contains a `components` folder where the components specific to that page are kept. This structure helps maintain a clean separation of concerns and keeps components organized. The `components` folder inside the root of the page directory is used to keep all the components for the root index.tsx file, so basically all the components in the home page.
 
-## Material UI v5
-
-The project is built using Material-UI (MUI) version 5. MUI provides a powerful and flexible way to style your components while following the latest design guidelines.
 
 ### Component Naming
 

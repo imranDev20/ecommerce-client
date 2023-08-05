@@ -13,6 +13,18 @@ import createEmotionCache from "@/shared/utils/createEmotionCache";
 import { CacheAppProps } from "@/shared/types/globalTypes";
 import createEmotionServer from "@emotion/server/create-instance";
 
+/**
+ * Custom Document component for Next.js application.
+ *
+ * This component is used to customize the rendering of the document's <html> and <body> tags.
+ * It provides the initial structure and metadata for the HTML document.
+ *
+ * @component
+ * @param {MyDocumentProps} props - The component props.
+ * @param {React.ReactNode} props.emotionStyleTags - Emotion style tags to be injected into the document.
+ * @returns {JSX.Element} - The rendered custom Document.
+ */
+
 interface MyDocumentProps extends DocumentProps {
   emotionStyleTags: JSX.Element[];
 }

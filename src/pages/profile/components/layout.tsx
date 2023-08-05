@@ -10,11 +10,11 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
+  Typography,
 } from "@mui/material";
 import React from "react";
 
 import { PROFILE_GROUPS, PROFILE_ITEMS } from "@/shared/constants/constants";
-import { ShoppingBagOutlined } from "@mui/icons-material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -34,7 +34,6 @@ export default function ProfileLayout({ children }: ChildrenNode) {
               bgcolor: "background.paper",
               borderRadius: 2,
               py: 1,
-              px: 0.5,
             }}
             subheader={<li />}
           >
@@ -46,14 +45,37 @@ export default function ProfileLayout({ children }: ChildrenNode) {
                       fontWeight: 400,
                       textTransform: "uppercase",
                       fontSize: 13,
+                      pl: 3,
                     }}
                   >
                     {sectionId}
                   </ListSubheader>
                   {PROFILE_ITEMS.filter((val) => val.group === sectionId).map(
                     (item) => (
-                      <ListItem key={`item-${sectionId}-${item.name}`}>
+                      <ListItem
+                        key={`item-${sectionId}-${item.name}`}
+                        disableGutters
+                      >
                         <ListItemButton
+                          sx={{
+                            borderLeft: "4px solid",
+                            borderLeftColor: "transparent",
+                            "&.Mui-selected": {
+                              backgroundColor: "white",
+                              borderLeft: "4px solid",
+                              borderLeftColor: "primary.main",
+                              color: "primary.main",
+
+                              ":hover": {
+                                backgroundColor: "white",
+                              },
+                            },
+                            ":hover": {
+                              backgroundColor: "white",
+                              color: "primary.main",
+                              transition: "0.3s all ease-in-out",
+                            },
+                          }}
                           selected={
                             item.route === ""
                               ? router.pathname === "/profile"
