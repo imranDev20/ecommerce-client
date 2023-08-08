@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  images: {
+    domains: ["bazaar.ui-lib.com"],
+  },
+
   // Improves MUI bundle size
   modularizeImports: {
     "@mui/material": {

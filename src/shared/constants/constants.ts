@@ -261,3 +261,9 @@ export const PROFILE_ITEMS = [
     route: "payment-methods",
   },
 ];
+
+export const HEADER_LINKS = [
+  { id: 1, name: "Home", route: "/" },
+  { id: 2, name: "Products", route: "/products" },
+  { id: 3, name: "Brands", route: "/brands" },
+];

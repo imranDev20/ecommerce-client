@@ -1,7 +1,9 @@
 import React from "react";
 import { CarouselProvider, Slider, Slide, DotGroup } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import Image from "next/image";
+import HeroImage from "@/images/hero-images/apple-iphone-2.jpeg";
 
 const Hero = () => {
   return (
@@ -24,10 +26,16 @@ const Hero = () => {
                 index={0}
                 style={{
                   minHeight: "400px",
-                  px: 10,
+                  paddingLeft: 0,
+                  paddingRight: 0,
                 }}
               >
-                {item}
+                <Grid container sx={{}}>
+                  <Grid item sm={4}>
+                    <Typography>Big & Better</Typography>
+                  </Grid>
+                  <Grid item sm={8}></Grid>
+                </Grid>
               </Slide>
             );
           })}

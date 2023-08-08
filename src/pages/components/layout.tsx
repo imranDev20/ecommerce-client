@@ -93,15 +93,7 @@ export default function RootLayout({ children }: ChildrenNode): JSX.Element {
           {drawer}
         </Drawer>
       </Box>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          height: "1000vh",
-        }}
-      >
-        <Toolbar />
+      <Box component="main" sx={{ height: "1000vh" }}>
         {children}
       </Box>
     </>

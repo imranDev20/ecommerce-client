@@ -1,4 +1,4 @@
 type Props = {};
-export default function Footer({}: Props) {
-  return <div>Footer</div>;
+export default function Foote({}: Props) {
+  return <div>Foote</div>;
 }

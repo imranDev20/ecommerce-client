@@ -23,7 +23,14 @@ export default function NextLink({
   href,
 }: NextLinkProps): JSX.Element {
   return (
-    <MuiLink component={Link} underline="none" href={href}>
+    <MuiLink
+      sx={{
+        color: "text.primary",
+      }}
+      component={Link}
+      underline="none"
+      href={href}
+    >
       {children}
     </MuiLink>
   );

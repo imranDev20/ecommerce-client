@@ -56,6 +56,7 @@ export default function ProfileLayout({ children }: ChildrenNode) {
                         disableGutters
                       >
                         <ListItemButton
+                          disableRipple
                           sx={{
                             borderLeft: "4px solid",
                             borderLeftColor: "transparent",

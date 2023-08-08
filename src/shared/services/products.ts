@@ -1,10 +1,10 @@
 import { apiGet, apiPost } from "../utils/api";
 
-export const getProducts = async () => {
+export const getProducts = () => {
   return apiGet("/products");
 };
 
-export const createProduct = async (productData: object) => {
+export const createProduct = (productData: object) => {
   return apiPost("/products", productData);
 };
 
