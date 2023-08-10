@@ -3,6 +3,7 @@ import { Button, Stack, Typography } from "@mui/material";
 import CategoryAccordion from "./category-accordion";
 
 import { HOME_CATEGORIES } from "@/shared/constants/constants";
+import Link from "next/link";
 
 const CategoriesMenu = () => {
   return (
@@ -33,6 +34,8 @@ const CategoriesMenu = () => {
         } else {
           return (
             <Button
+              LinkComponent={Link}
+              href={`/products?category=${category.name}`}
               fullWidth
               startIcon={category && category.icon && <category.icon />}
               sx={{

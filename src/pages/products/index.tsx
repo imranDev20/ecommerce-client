@@ -1,14 +1,20 @@
 import { getProducts } from "@/shared/services/products";
-import { Products } from "@/shared/types/productTypes";
+import { ProductPageProps } from "@/shared/types/productTypes";
 import { Container, Grid } from "@mui/material";
 import ProductCard from "./components/product-card";
+import ProductsSidebar from "./components/products-sidebar";
+import { getCategories } from "@/shared/services/categories";
 
-export default function ProductsPage({ products }: Products) {
+export default function ProductsPage({
+  products,
+  categories,
+}: ProductPageProps) {
+  console.log(categories);
   return (
     <Container sx={{ mt: 5 }}>
       <Grid container spacing={3}>
         <Grid item sm={3}>
-          SIdebar
+          <ProductsSidebar categories={categories} />
         </Grid>
 
         <Grid item container sm={9} spacing={3}>
@@ -25,13 +31,17 @@ export default function ProductsPage({ products }: Products) {
 
 export const getStaticProps = async () => {
   try {
-    const response = await getProducts();
-    const products = response.data;
+    const productsResponse = await getProducts();
+    const products = productsResponse.data;
 
-    if (response.success) {
+    const categoriesResponse = await getCategories();
+    const categories = categoriesResponse.data;
+
+    if (productsResponse.success && categoriesResponse.success) {
       return {
         props: {
           products,
+          categories,
         },
       };
     } else {

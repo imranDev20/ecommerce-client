@@ -10,9 +10,12 @@ type Brand = {
   id: string;
 };
 
-type Category = {
+export type Category = {
+  _id: string;
   name: string;
-  id: string;
+  products: string[];
+  description: string;
+  __v: number;
 };
 
 export type Product = {
@@ -36,4 +39,13 @@ export type ProductProps = {
 
 export type Products = {
   products: Product[];
+};
+
+export type Categories = {
+  categories: Category[];
+};
+
+export type ProductPageProps = {
+  products: Product[];
+  categories: Category[];
 };
