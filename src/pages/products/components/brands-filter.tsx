@@ -1,4 +1,4 @@
-import { Category } from "@/shared/types/productTypes";
+import { Categories } from "@/shared/types/productTypes";
 import {
   Checkbox,
   List,
@@ -9,29 +9,33 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 
-//We will delete this component later
-
-type DynamicFilterBlocksProps = {
-  title?: string;
-  list: Category[] | any[];
-};
-
-export default function DynamicFilterBlocks({
-  title,
-  list,
-}: DynamicFilterBlocksProps) {
+export default function BrandsFilter({ categories }: Categories) {
   const router = useRouter();
   const queryCategories = router.query.categories
     ? router.query.categories?.toString().split(",")
     : [];
+  const queryBrands = router.query.brands
+    ? router.query.brands?.toString().split(",")
+    : [];
 
   const handleCategoryChange = (categoryName: string) => {
-    const updatedCategories = queryCategories.includes(categoryName)
-      ? queryCategories.filter((category) => category !== categoryName)
-      : [...queryCategories, categoryName];
+    const updatedBrands = queryBrands.includes(categoryName)
+      ? queryBrands.filter((category) => category !== categoryName)
+      : [...queryBrands, categoryName];
+
+    const queryObject = {
+      ...(queryCategories.length > 0 && {
+        categories: queryCategories.join(","),
+      }),
+      ...(updatedBrands.length > 0 && {
+        brands: updatedBrands.join(","),
+      }),
+    };
 
     router.push(
-      { query: { categories: updatedCategories.join(",") } },
+      {
+        query: queryObject,
+      },
       undefined,
       {
         shallow: true,
@@ -42,18 +46,14 @@ export default function DynamicFilterBlocks({
   return (
     <>
       <Typography component="h3" fontSize={18} fontWeight={500}>
-        {title}
+        Brands
       </Typography>
       <List dense>
-        {list.map((listItem) => (
-          <ListItem
-            key={listItem._id ? listItem._id : listItem}
-            disableGutters
-            disablePadding
-          >
+        {categories.map((listItem) => (
+          <ListItem key={listItem._id} disableGutters disablePadding>
             <ListItemIcon sx={{ minWidth: "unset" }}>
               <Checkbox
-                checked={queryCategories.includes(listItem.name)}
+                checked={queryBrands.includes(listItem.name)}
                 size="small"
                 edge="start"
                 onChange={() => handleCategoryChange(listItem.name)}
@@ -68,7 +68,7 @@ export default function DynamicFilterBlocks({
                     fontSize: 15,
                   }}
                 >
-                  {listItem.name ? listItem.name : listItem}
+                  {listItem.name}
                 </Typography>
               }
             />

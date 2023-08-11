@@ -2,6 +2,7 @@ import { Card, CardContent, Divider } from "@mui/material";
 import DynamicFilterBlocks from "./dynamic-filter-blocks";
 import { Categories } from "@/shared/types/productTypes";
 import CategoriesFilter from "./categories-filter";
+import BrandsFilter from "./brands-filter";
 
 export default function ProductsSidebar({ categories }: Categories) {
   return (
@@ -10,7 +11,7 @@ export default function ProductsSidebar({ categories }: Categories) {
         <CategoriesFilter categories={categories} />
 
         <Divider sx={{ my: 2 }} />
-        <DynamicFilterBlocks title="Brands" list={["hello", "jello"]} />
+        <BrandsFilter categories={categories} />
 
         <Divider sx={{ my: 2 }} />
 

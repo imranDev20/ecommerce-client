@@ -14,14 +14,29 @@ export default function CategoriesFilter({ categories }: Categories) {
   const queryCategories = router.query.categories
     ? router.query.categories?.toString().split(",")
     : [];
+  const queryBrands = router.query.brands
+    ? router.query.brands?.toString().split(",")
+    : [];
 
   const handleCategoryChange = (categoryName: string) => {
     const updatedCategories = queryCategories.includes(categoryName)
       ? queryCategories.filter((category) => category !== categoryName)
       : [...queryCategories, categoryName];
 
+    const queryObject = {
+      ...(updatedCategories.length > 0 && {
+        categories: updatedCategories.join(","),
+      }),
+
+      ...(queryBrands.length > 0 && {
+        brands: queryBrands.join(","),
+      }),
+    };
+
     router.push(
-      { query: { categories: updatedCategories.join(",") } },
+      {
+        query: queryObject,
+      },
       undefined,
       {
         shallow: true,
