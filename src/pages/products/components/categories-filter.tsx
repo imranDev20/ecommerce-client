@@ -50,7 +50,7 @@ export default function CategoriesFilter({ categories }: Categories) {
         Categories
       </Typography>
       <List dense>
-        {categories.map((listItem) => (
+        {categories?.map((listItem) => (
           <ListItem key={listItem._id} disableGutters disablePadding>
             <ListItemIcon sx={{ minWidth: "unset" }}>
               <Checkbox

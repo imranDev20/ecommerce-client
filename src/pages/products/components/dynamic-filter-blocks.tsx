@@ -45,7 +45,7 @@ export default function DynamicFilterBlocks({
         {title}
       </Typography>
       <List dense>
-        {list.map((listItem) => (
+        {list?.map((listItem) => (
           <ListItem
             key={listItem._id ? listItem._id : listItem}
             disableGutters
