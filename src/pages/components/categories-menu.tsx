@@ -35,7 +35,7 @@ const CategoriesMenu = () => {
           return (
             <Button
               LinkComponent={Link}
-              href={`/products?category=${category.name}`}
+              href={`/products?categories=${category.name}`}
               fullWidth
               startIcon={category && category.icon && <category.icon />}
               sx={{

@@ -161,8 +161,9 @@ export default function Header({ handleDrawerToggle }: Props) {
           color="inherit"
           elevation={0}
           sx={{
-            height: "inherit",
+            height: 0,
             opacity: 0,
+            pointerEvents: "none",
           }}
         >
           <Container>

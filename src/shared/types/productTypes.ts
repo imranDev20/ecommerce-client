@@ -45,7 +45,7 @@ export type Categories = {
   categories: Category[];
 };
 
-export type ProductPageProps = {
+export type ProductsPageProps = {
   products: Product[];
   categories: Category[];
 };

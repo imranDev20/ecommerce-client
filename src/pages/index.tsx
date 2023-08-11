@@ -27,7 +27,7 @@ export default function HomePage({ products }: Products) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await getProducts();
 
   const products = response.data;

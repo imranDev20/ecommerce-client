@@ -7,6 +7,8 @@ import { CacheAppProps } from "@/shared/types/globalTypes";
 import RootLayout from "./components/layout";
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "@/shared/utils/createEmotionCache";
+import { Provider } from "react-redux";
+import { store } from "@/shared/redux/store";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -17,6 +19,7 @@ const clientSideEmotionCache = createEmotionCache();
  * This component sets up the global styles and themes using MUI's `ThemeProvider`,
  * initializes CSS baseline, provides the Emotion cache using `CacheProvider`,
  * and wraps the main content with the `RootLayout` component for consistent layout.
+ * It also integrates Redux state management using `Provider` and the configured `store`.
  * It should be placed in the `pages/_app.js` file.
  *
  * @component
@@ -38,13 +41,15 @@ export default function App(props: CacheAppProps): JSX.Element {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
 
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <RootLayout>
-          <Component {...pageProps} />
-        </RootLayout>
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <RootLayout>
+            <Component {...pageProps} />
+          </RootLayout>
+        </ThemeProvider>
+      </Provider>
     </CacheProvider>
   );
 }

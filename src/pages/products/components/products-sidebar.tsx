@@ -1,12 +1,13 @@
 import { Card, CardContent, Divider } from "@mui/material";
 import DynamicFilterBlocks from "./dynamic-filter-blocks";
 import { Categories } from "@/shared/types/productTypes";
+import CategoriesFilter from "./categories-filter";
 
 export default function ProductsSidebar({ categories }: Categories) {
   return (
     <Card sx={{ p: 1.5 }}>
       <CardContent>
-        <DynamicFilterBlocks title="Categories" list={categories} />
+        <CategoriesFilter categories={categories} />
 
         <Divider sx={{ my: 2 }} />
         <DynamicFilterBlocks title="Brands" list={["hello", "jello"]} />

@@ -1,4 +1,4 @@
-import { Category } from "@/shared/types/productTypes";
+import { Categories } from "@/shared/types/productTypes";
 import {
   Checkbox,
   List,
@@ -9,15 +9,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 
-type DynamicFilterBlocksProps = {
-  title?: string;
-  list: Category[] | any[];
-};
-
-export default function DynamicFilterBlocks({
-  title,
-  list,
-}: DynamicFilterBlocksProps) {
+export default function CategoriesFilter({ categories }: Categories) {
   const router = useRouter();
   const queryCategories = router.query.categories
     ? router.query.categories?.toString().split(",")
@@ -40,15 +32,11 @@ export default function DynamicFilterBlocks({
   return (
     <>
       <Typography component="h3" fontSize={18} fontWeight={500}>
-        {title}
+        Categories
       </Typography>
       <List dense>
-        {list.map((listItem) => (
-          <ListItem
-            key={listItem._id ? listItem._id : listItem}
-            disableGutters
-            disablePadding
-          >
+        {categories.map((listItem) => (
+          <ListItem key={listItem._id} disableGutters disablePadding>
             <ListItemIcon sx={{ minWidth: "unset" }}>
               <Checkbox
                 checked={queryCategories.includes(listItem.name)}
@@ -66,7 +54,7 @@ export default function DynamicFilterBlocks({
                     fontSize: 15,
                   }}
                 >
-                  {listItem.name ? listItem.name : listItem}
+                  {listItem.name}
                 </Typography>
               }
             />
