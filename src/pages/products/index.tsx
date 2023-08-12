@@ -34,42 +34,39 @@ export const getServerSideProps = async (context: NextPageContext) => {
   const { query } = context;
 
   try {
+    let filteredProductsResponse;
+    let productsResponse;
+    let categoriesResponse;
+
     if (query && Object.keys(query).length !== 0) {
-      const filteredProductsResponse = await getProducts(query);
-      const filteredProducts = filteredProductsResponse.data;
-
-      const categoriesResponse = await getCategories();
-      const categories = categoriesResponse.data;
-
-      if (filteredProductsResponse.success && categoriesResponse.success) {
-        return {
-          props: {
-            products: filteredProducts,
-            categories: categories,
-          },
-        };
-      } else {
-        throw new Error();
-      }
+      filteredProductsResponse = await getProducts(query);
     } else {
-      const productsResponse = await getProducts();
-      const products = productsResponse.data;
+      productsResponse = await getProducts();
+    }
 
-      const categoriesResponse = await getCategories();
-      const categories = categoriesResponse.data;
+    categoriesResponse = await getCategories();
 
-      if (productsResponse.success && categoriesResponse.success) {
-        return {
-          props: {
-            products,
-            categories,
-          },
-        };
-      } else {
-        throw new Error();
-      }
+    const filteredProducts = filteredProductsResponse?.data || [];
+    const products = productsResponse?.data || [];
+    const categories = categoriesResponse?.data || [];
+
+    if (
+      (filteredProductsResponse?.success || productsResponse?.success) &&
+      categoriesResponse?.success
+    ) {
+      return {
+        props: {
+          products: filteredProducts.length > 0 ? filteredProducts : products,
+          categories,
+        },
+      };
+    } else {
+      throw new Error();
     }
   } catch (err) {
     console.log(err);
+    return {
+      props: {},
+    };
   }
 };

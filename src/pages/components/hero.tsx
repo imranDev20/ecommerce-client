@@ -97,10 +97,10 @@ const Hero = () => {
                     </Grid>
                     <Grid item sm={5}>
                       <Image
-                        objectFit="contain"
-                        layout="responsive"
+                        width={500}
                         src={item.image}
                         alt={item.title}
+                        loading="eager"
                       />
                     </Grid>
                   </Grid>
