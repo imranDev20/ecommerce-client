@@ -9,6 +9,7 @@ import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "@/shared/utils/createEmotionCache";
 import { Provider } from "react-redux";
 import { store } from "@/shared/redux/store";
+import NextNProgress from "nextjs-progressbar";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -45,6 +46,14 @@ export default function App(props: CacheAppProps): JSX.Element {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
+          <NextNProgress
+            color={theme.palette.primary.main}
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={3}
+            showOnShallow={true}
+          />
+
           <RootLayout>
             <Component {...pageProps} />
           </RootLayout>

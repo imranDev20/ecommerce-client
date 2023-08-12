@@ -6,7 +6,7 @@ import BrandsFilter from "./brands-filter";
 
 export default function ProductsSidebar({ categories }: Categories) {
   return (
-    <Card sx={{ p: 1.4 }}>
+    <Card sx={{ p: 1.5 }}>
       <CardContent>
         <CategoriesFilter categories={categories} />
 
