@@ -132,7 +132,7 @@ export default function Header({ handleDrawerToggle }: Props) {
       </AppBar>
 
       <HideOnScroll>
-        <AppBar position="sticky" color="inherit" elevation={0} sx={{}}>
+        <AppBar position="fixed" color="inherit" elevation={0} sx={{}}>
           <Container>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Toolbar
@@ -175,7 +175,7 @@ export default function Header({ handleDrawerToggle }: Props) {
                   </Box>
                 </NextLink>
 
-                {/* Flex Grow of 1 on paper is making it full width */}
+                {/* Flex Grow of 1 on paper is making it full width  */}
                 <SearchField />
 
                 <Stack direction="row" spacing={3}>

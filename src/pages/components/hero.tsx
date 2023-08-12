@@ -1,9 +1,34 @@
 import React from "react";
 import { CarouselProvider, Slider, Slide, DotGroup } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import HeroImage from "@/images/hero-images/apple-iphone-2.jpeg";
+import ShoesImage from "@/images/hero-images/shoes.png";
+
+const heroSlides = [
+  {
+    id: 1,
+    image: ShoesImage,
+    title: "Step into Adventure with Perfect Pair",
+    description:
+      "Embark on exciting journeys with the ideal companions for every step.",
+  },
+  {
+    id: 2,
+    image: ShoesImage,
+    title: "Step into Adventure with Perfect Pair",
+    description:
+      "Embark on exciting journeys with the ideal companions for every step.",
+  },
+  {
+    id: 2,
+    image: ShoesImage,
+    title: "Step into Adventure with Perfect Pair",
+    description:
+      "Embark on exciting journeys with the ideal companions for every step.",
+  },
+];
 
 const Hero = () => {
   return (
@@ -11,7 +36,7 @@ const Hero = () => {
       component="section"
       maxWidth={false}
       disableGutters
-      sx={{ mb: 5 }}
+      sx={{ mb: 5, backgroundColor: "#EEEFEF" }}
     >
       <CarouselProvider
         totalSlides={3}
@@ -19,7 +44,7 @@ const Hero = () => {
         naturalSlideWidth={100}
       >
         <Slider moveThreshold={0.3}>
-          {["first", "second", "third"].map((item, index) => {
+          {heroSlides.map((item, index) => {
             return (
               <Slide
                 key={index}
@@ -30,12 +55,56 @@ const Hero = () => {
                   paddingRight: 0,
                 }}
               >
-                <Grid container sx={{}}>
-                  <Grid item sm={4}>
-                    <Typography>Big & Better</Typography>
+                <Container maxWidth="lg">
+                  <Grid container sx={{}}>
+                    <Grid item sm={7}>
+                      <Box
+                        maxWidth={450}
+                        sx={{
+                          height: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <Typography
+                          component="h2"
+                          color="text.primary"
+                          fontWeight={700}
+                          sx={{
+                            fontSize: 42,
+                          }}
+                        >
+                          {item.title}
+                        </Typography>
+                        <Typography
+                          color="text.primary"
+                          sx={{
+                            fontSize: 18,
+                            mt: 2,
+                          }}
+                        >
+                          {item.description}
+                        </Typography>
+
+                        <Box sx={{ width: "100%", mt: 3 }}>
+                          <Button variant="contained" disableElevation>
+                            Buy Now
+                          </Button>
+                        </Box>
+                      </Box>
+                    </Grid>
+                    <Grid item sm={5}>
+                      <Image
+                        objectFit="contain"
+                        layout="responsive"
+                        src={item.image}
+                        alt={item.title}
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid item sm={8}></Grid>
-                </Grid>
+                </Container>
               </Slide>
             );
           })}
@@ -50,6 +119,7 @@ const Hero = () => {
               width: 17,
               height: 17,
               mx: 0.5,
+              mb: 3,
               borderRadius: "50%",
               display: "flex",
               justifyContent: "center",
