@@ -32,15 +32,25 @@ export default function ProductsPage({
 
 export const getServerSideProps = async (context: NextPageContext) => {
   const { query } = context;
-  console.log(query);
 
   try {
-    if (query.categories) {
-      return {
-        props: {
-          hello: "hi",
-        },
-      };
+    if (query && Object.keys(query).length !== 0) {
+      const filteredProductsResponse = await getProducts(query);
+      const filteredProducts = filteredProductsResponse.data;
+
+      const categoriesResponse = await getCategories();
+      const categories = categoriesResponse.data;
+
+      if (filteredProductsResponse.success && categoriesResponse.success) {
+        return {
+          props: {
+            products: filteredProducts,
+            categories: categories,
+          },
+        };
+      } else {
+        throw new Error();
+      }
     } else {
       const productsResponse = await getProducts();
       const products = productsResponse.data;

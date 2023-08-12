@@ -52,6 +52,7 @@ export default function App(props: CacheAppProps): JSX.Element {
             stopDelayMs={200}
             height={3}
             showOnShallow={true}
+            options={{ easing: "ease", speed: 500 }}
           />
 
           <RootLayout>

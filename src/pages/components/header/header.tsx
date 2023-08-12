@@ -26,30 +26,6 @@ type Props = {
 };
 
 export default function Header({ handleDrawerToggle }: Props) {
-  function HideOnScroll(props: ChildrenElement) {
-    const { children } = props;
-
-    const trigger2 = useScrollTrigger({
-      disableHysteresis: true,
-      threshold: 600,
-    });
-
-    const trigger1 = useScrollTrigger();
-
-    return React.cloneElement(
-      <Slide appear={false} direction="down" in={!trigger1}>
-        {children}
-      </Slide>,
-      {
-        sx: {
-          boxShadow: trigger2 ? "rgba(43, 52, 69, 0.1) 0px 4px 16px" : "none",
-          height: trigger2 ? "inherit" : 0,
-          opacity: trigger2 ? 1 : 0,
-        },
-      }
-    );
-  }
-
   return (
     <>
       <AppBar position="static" color="inherit" elevation={0}>
@@ -156,16 +132,7 @@ export default function Header({ handleDrawerToggle }: Props) {
       </AppBar>
 
       <HideOnScroll>
-        <AppBar
-          position="sticky"
-          color="inherit"
-          elevation={0}
-          sx={{
-            height: 0,
-            opacity: 0,
-            pointerEvents: "none",
-          }}
-        >
+        <AppBar position="sticky" color="inherit" elevation={0} sx={{}}>
           <Container>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Toolbar
@@ -256,5 +223,43 @@ export default function Header({ handleDrawerToggle }: Props) {
         </AppBar>
       </HideOnScroll>
     </>
+  );
+}
+
+function HideOnScroll(props: ChildrenElement) {
+  const { children } = props;
+  const [scrolled, setScrolled] = React.useState(false);
+
+  const trigger2 = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 600,
+  });
+
+  React.useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY >= 500) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return React.cloneElement(
+    <Slide appear={false} direction="down" in={scrolled}>
+      {children}
+    </Slide>,
+    {
+      sx: {
+        boxShadow: trigger2 ? "rgba(43, 52, 69, 0.1) 0px 4px 16px" : "none",
+      },
+    }
   );
 }
