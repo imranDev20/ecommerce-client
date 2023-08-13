@@ -1,3 +1,5 @@
+import { useAppDispatch } from "@/shared/redux/hooks";
+import { setIsFiltered } from "@/shared/redux/slices/filtersSlice";
 import { Categories } from "@/shared/types/productTypes";
 import {
   Checkbox,
@@ -11,6 +13,8 @@ import { useRouter } from "next/router";
 
 export default function CategoriesFilter({ categories }: Categories) {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
   const queryCategories = router.query.categories
     ? router.query.categories?.toString().split(",")
     : [];
@@ -42,6 +46,8 @@ export default function CategoriesFilter({ categories }: Categories) {
         shallow: true,
       }
     );
+
+    dispatch(setIsFiltered());
   };
 
   return (

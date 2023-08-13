@@ -23,7 +23,7 @@ const heroSlides = [
       "Experience the seamless fusion of art and movement as sculpted beauty glides with grace.",
   },
   {
-    id: 2,
+    id: 3,
     image: MacImage,
     title: "Potent Performance in a Sleek Housing",
     description:

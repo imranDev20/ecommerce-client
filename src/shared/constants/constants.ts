@@ -266,4 +266,9 @@ export const HEADER_LINKS = [
   { id: 1, name: "Home", route: "/" },
   { id: 2, name: "Products", route: "/products" },
   { id: 3, name: "Brands", route: "/brands" },
+  {
+    id: 4,
+    name: "Sell on E-Commerce",
+    route: "https://ecommerce-admin-tau-liart.vercel.app",
+  },
 ];

@@ -48,4 +48,10 @@ export type Categories = {
 export type ProductsPageProps = {
   products: Product[];
   categories: Category[];
+  error?: string;
+};
+
+export type ProductsCardProps = {
+  products: Product[];
+  error?: string;
 };

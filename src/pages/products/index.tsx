@@ -1,14 +1,15 @@
 import { getProducts } from "@/shared/services/products";
 import { ProductsPageProps } from "@/shared/types/productTypes";
 import { Container, Grid } from "@mui/material";
-import ProductCard from "./components/product-card";
 import ProductsSidebar from "./components/products-sidebar";
 import { getCategories } from "@/shared/services/categories";
 import { NextPageContext } from "next";
+import ProductCards from "./components/product-cards";
 
 export default function ProductsPage({
   products,
   categories,
+  error,
 }: ProductsPageProps) {
   return (
     <Container sx={{ mt: 5 }}>
@@ -18,12 +19,7 @@ export default function ProductsPage({
         </Grid>
 
         <Grid item container sm={9} spacing={3}>
-          {products &&
-            products.map((product) => (
-              <Grid item sm={4} key={product._id}>
-                <ProductCard key={product._id} product={product} />
-              </Grid>
-            ))}
+          <ProductCards products={products} error={error} />
         </Grid>
       </Grid>
     </Container>
@@ -50,6 +46,12 @@ export const getServerSideProps = async (context: NextPageContext) => {
     const products = productsResponse?.data || [];
     const categories = categoriesResponse?.data || [];
 
+    console.log(
+      filteredProductsResponse?.success,
+      productsResponse?.success,
+      categoriesResponse?.success
+    );
+
     if (
       (filteredProductsResponse?.success || productsResponse?.success) &&
       categoriesResponse?.success
@@ -61,12 +63,11 @@ export const getServerSideProps = async (context: NextPageContext) => {
         },
       };
     } else {
-      throw new Error();
+      throw Error();
     }
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
     return {
-      props: {},
+      props: { error: error instanceof Error ? error.message : String(error) },
     };
   }
 };

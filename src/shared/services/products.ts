@@ -1,6 +1,6 @@
 import { apiGet, apiPost } from "../utils/api";
 
-export const getProducts = (query?: any) => {
+export const getProducts = async (query?: any) => {
   if (query && Object.keys(query).length !== 0) {
     const url = `/products?${
       query.categories
