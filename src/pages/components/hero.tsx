@@ -3,30 +3,31 @@ import { CarouselProvider, Slider, Slide, DotGroup } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import Image from "next/image";
-import HeroImage from "@/images/hero-images/apple-iphone-2.jpeg";
-import ShoesImage from "@/images/hero-images/shoes.png";
+import ShoeImage from "@/images/hero-images/shoes.png";
+import CarImage from "@/images/hero-images/cars.png";
+import MacImage from "@/images/hero-images/mac.png";
 
 const heroSlides = [
   {
     id: 1,
-    image: ShoesImage,
+    image: ShoeImage,
     title: "Step into Adventure with Perfect Pair",
     description:
       "Embark on exciting journeys with the ideal companions for every step.",
   },
   {
     id: 2,
-    image: ShoesImage,
-    title: "Step into Adventure with Perfect Pair",
+    image: CarImage,
+    title: "Sculpted Elegance in Graceful Motion",
     description:
-      "Embark on exciting journeys with the ideal companions for every step.",
+      "Experience the seamless fusion of art and movement as sculpted beauty glides with grace.",
   },
   {
     id: 2,
-    image: ShoesImage,
-    title: "Step into Adventure with Perfect Pair",
+    image: MacImage,
+    title: "Potent Performance in a Sleek Housing",
     description:
-      "Embark on exciting journeys with the ideal companions for every step.",
+      "Discover a world of exceptional power and efficiency, elegantly encased in a slim housing.",
   },
 ];
 
@@ -36,7 +37,7 @@ const Hero = () => {
       component="section"
       maxWidth={false}
       disableGutters
-      sx={{ mb: 5, backgroundColor: "#EEEFEF" }}
+      sx={{ backgroundColor: "#EEEFEF" }}
     >
       <CarouselProvider
         totalSlides={3}
@@ -50,14 +51,14 @@ const Hero = () => {
                 key={index}
                 index={0}
                 style={{
-                  minHeight: "400px",
+                  minHeight: "450px",
                   paddingLeft: 0,
                   paddingRight: 0,
                 }}
               >
-                <Container maxWidth="lg">
-                  <Grid container sx={{}}>
-                    <Grid item sm={7}>
+                <Container maxWidth="lg" sx={{ height: "100%" }}>
+                  <Grid container sx={{ height: "100%" }}>
+                    <Grid item md={7}>
                       <Box
                         maxWidth={450}
                         sx={{
@@ -89,19 +90,33 @@ const Hero = () => {
                         </Typography>
 
                         <Box sx={{ width: "100%", mt: 3 }}>
-                          <Button variant="contained" disableElevation>
+                          <Button
+                            size="large"
+                            variant="contained"
+                            disableElevation
+                          >
                             Buy Now
                           </Button>
                         </Box>
                       </Box>
                     </Grid>
-                    <Grid item sm={5}>
-                      <Image
-                        width={500}
-                        src={item.image}
-                        alt={item.title}
-                        loading="eager"
-                      />
+                    <Grid item md={5}>
+                      <Box
+                        sx={{
+                          height: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <Image
+                          width={500}
+                          src={item.image}
+                          alt={item.title}
+                          loading="eager"
+                        />
+                      </Box>
                     </Grid>
                   </Grid>
                 </Container>
