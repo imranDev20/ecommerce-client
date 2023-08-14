@@ -6,7 +6,7 @@ export const getProducts = async (query?: any) => {
       query.categories
         ? `categories=${encodeURIComponent(query.categories)}`
         : ""
-    }${query.brands ? `brands=${encodeURIComponent(query.brands)}` : ""}`;
+    }&${query.brands ? `brands=${encodeURIComponent(query.brands)}` : ""}`;
 
     return apiGet(url);
   }
