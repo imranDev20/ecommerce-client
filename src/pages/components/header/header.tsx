@@ -42,7 +42,6 @@ export default function Header({ handleDrawerToggle }: Props) {
                 color="inherit"
                 aria-label="open drawer"
                 edge="start"
-                onClick={handleDrawerToggle}
                 sx={{ mr: 2, display: { sm: "none" } }}
               >
                 <MenuIcon />
@@ -104,6 +103,7 @@ export default function Header({ handleDrawerToggle }: Props) {
                   }
                 >
                   <IconButton
+                    onClick={handleDrawerToggle}
                     sx={{
                       backgroundColor: "#f3f5f9",
                       p: 1.3,

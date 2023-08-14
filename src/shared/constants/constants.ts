@@ -220,7 +220,7 @@ export const HOME_CATEGORIES = [
   },
 ];
 
-export const DRAWER_WIDTH: number = 240;
+export const DRAWER_WIDTH: number = 300;
 
 export const PROFILE_GROUPS = ["Dashboard", "Account Settings"];
 export const PROFILE_ITEMS = [

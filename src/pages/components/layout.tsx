@@ -13,6 +13,8 @@ import Toolbar from "@mui/material/Toolbar";
 import { ChildrenNode } from "@/shared/types/globalTypes";
 import { DRAWER_WIDTH as drawerWidth } from "@/shared/constants/constants";
 import Header from "./header/header";
+import DynamicDrawer from "@/shared/components/dynamic-drawer";
+import Cart from "./cart";
 
 /**
  * The root layout component that wraps the main content of the application.
@@ -33,38 +35,6 @@ export default function RootLayout({ children }: ChildrenNode): JSX.Element {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-    <>
-      <Toolbar />
-      <Divider />
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </>
-  );
-
   return (
     <>
       <Header handleDrawerToggle={handleDrawerToggle} />
@@ -74,24 +44,14 @@ export default function RootLayout({ children }: ChildrenNode): JSX.Element {
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Drawer
-          variant="temporary"
+
+        <DynamicDrawer
           anchor="right"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
+          mobileOpen={mobileOpen}
+          handleDrawerToggle={handleDrawerToggle}
         >
-          {drawer}
-        </Drawer>
+          <Cart />
+        </DynamicDrawer>
       </Box>
       <Box component="main" sx={{ height: "1000vh" }}>
         {children}

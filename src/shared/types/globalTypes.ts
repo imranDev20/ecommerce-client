@@ -24,3 +24,10 @@ export type ProfileHeaderProps = {
   children?: React.ReactNode;
   icon?: SvgIconComponent;
 };
+
+export type DynamicDrawerProps = {
+  anchor: "left" | "top" | "right" | "bottom";
+  mobileOpen: boolean;
+  handleDrawerToggle: () => void;
+  children: React.ReactElement;
+};

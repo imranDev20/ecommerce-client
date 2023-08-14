@@ -4,6 +4,7 @@ import { Box, Card, CardContent, Rating, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { NumericFormat } from "react-number-format";
+import ProductCardButtons from "./product-card-buttons";
 
 export default function ProductCard({ product }: ProductProps) {
   if (product && Object.keys(product).length > 0) {
@@ -118,7 +119,7 @@ export default function ProductCard({ product }: ProductProps) {
             </Box>
           </Box>
 
-          {/* <ProductCardButtons product={product} /> */}
+          <ProductCardButtons product={product} />
         </CardContent>
       </Card>
     );

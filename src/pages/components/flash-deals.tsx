@@ -32,11 +32,12 @@ export default function FlashDeals({ products }: Products) {
       </Box>
 
       <Grid container spacing={3}>
-        {products.map((product) => (
-          <Grid item md={3} key={product._id}>
-            <ProductCard product={product} />
-          </Grid>
-        ))}
+        {products &&
+          products.map((product) => (
+            <Grid item md={3} key={product._id}>
+              <ProductCard product={product} />
+            </Grid>
+          ))}
       </Grid>
     </>
   );

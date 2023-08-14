@@ -46,12 +46,6 @@ export const getServerSideProps = async (context: NextPageContext) => {
     const products = productsResponse?.data || [];
     const categories = categoriesResponse?.data || [];
 
-    console.log(
-      filteredProductsResponse?.success,
-      productsResponse?.success,
-      categoriesResponse?.success
-    );
-
     if (
       (filteredProductsResponse?.success || productsResponse?.success) &&
       categoriesResponse?.success

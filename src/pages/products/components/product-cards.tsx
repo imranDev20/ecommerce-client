@@ -26,6 +26,8 @@ export default function ProductCards({ products, error }: ProductsCardProps) {
     }
   }, [isCheckboxPressed, router]);
 
+  console.log(filteredProducts);
+
   if (error) {
     return <>{error}</>;
   }
