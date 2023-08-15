@@ -19,7 +19,7 @@ This project utilizes the following libraries, tools, and technologies:
 - **i18next**: Used for internationalization (i18n) support, enabling users to view the application in different languages.
 - **Pure React Carousel**: Utilized for creating slides and carousels.
 - **Axios**: Used for making HTTP requests.
-
+- **Axios**: Optimistic UI update.
 
 ## Project Structure
 The naming convention throughout the project follows kebab casing. The project is organized using the following structure:

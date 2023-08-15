@@ -1,6 +1,6 @@
 import Hero from "./components/hero";
 import { Container } from "@mui/material";
-import { Products } from "@/shared/types/productTypes";
+import { Products } from "@/shared/types/product";
 import { getProducts } from "@/shared/services/products";
 import FlashDeals from "./components/flash-deals";
 

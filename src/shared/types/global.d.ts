@@ -1,6 +1,8 @@
 import { AppProps } from "next/app";
 import { EmotionCache } from "@emotion/react";
 import { SvgIconComponent } from "@mui/icons-material";
+import { Category } from "./product";
+import { Brand } from "./brand";
 
 export type ChildrenNode = {
   children: React.ReactNode;
@@ -30,4 +32,9 @@ export type DynamicDrawerProps = {
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
   children: React.ReactElement;
+};
+
+export type ProductsSidebarProps = {
+  categories: Category[];
+  brands: Brand[];
 };

@@ -16,7 +16,7 @@ import {
   Typography,
   useScrollTrigger,
 } from "@mui/material";
-import { ChildrenElement } from "@/shared/types/globalTypes";
+import { ChildrenElement } from "@/shared/types/global";
 import SearchField from "./search-field";
 import NextLink from "@/shared/components/next-link";
 import { HEADER_LINKS } from "@/shared/constants/constants";

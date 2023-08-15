@@ -1,4 +1,4 @@
-import { Product } from "@/shared/types/productTypes";
+import { Product } from "@/shared/types/product";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type CartStateType = {

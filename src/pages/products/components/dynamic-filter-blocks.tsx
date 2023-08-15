@@ -1,4 +1,4 @@
-import { Category } from "@/shared/types/productTypes";
+import { Category } from "@/shared/types/product";
 import {
   Checkbox,
   List,

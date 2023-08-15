@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Stack, Typography } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
-import { ProductProps } from "@/shared/types/productTypes";
+import { ProductProps } from "@/shared/types/product";
 import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
 
 const ProductCardButtons = ({ product }: ProductProps) => {

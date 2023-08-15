@@ -1,4 +1,5 @@
-import { Categories } from "@/shared/types/productTypes";
+import { Brands } from "@/shared/types/brand";
+import { Categories } from "@/shared/types/product";
 import {
   Checkbox,
   List,
@@ -9,7 +10,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 
-export default function BrandsFilter({ categories }: Categories) {
+export default function BrandsFilter({ brands }: Brands) {
   const router = useRouter();
   const queryCategories = router.query.categories
     ? router.query.categories?.toString().split(",")
@@ -38,7 +39,7 @@ export default function BrandsFilter({ categories }: Categories) {
       },
       undefined,
       {
-        shallow: true,
+        shallow: false,
       }
     );
   };
@@ -49,14 +50,14 @@ export default function BrandsFilter({ categories }: Categories) {
         Brands
       </Typography>
       <List dense>
-        {categories?.map((listItem) => (
-          <ListItem key={listItem._id} disableGutters disablePadding>
+        {brands?.map((brand) => (
+          <ListItem key={brand._id} disableGutters disablePadding>
             <ListItemIcon sx={{ minWidth: "unset" }}>
               <Checkbox
-                checked={queryBrands.includes(listItem.name)}
+                checked={queryBrands.includes(brand.name)}
                 size="small"
                 edge="start"
-                onChange={() => handleCategoryChange(listItem.name)}
+                onChange={() => handleCategoryChange(brand.name)}
               />
             </ListItemIcon>
             <ListItemText
@@ -68,7 +69,7 @@ export default function BrandsFilter({ categories }: Categories) {
                     fontSize: 15,
                   }}
                 >
-                  {listItem.name}
+                  {brand.name}
                 </Typography>
               }
             />

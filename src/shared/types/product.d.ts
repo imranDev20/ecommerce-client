@@ -1,3 +1,5 @@
+import { Brand } from "./brand";
+
 type Attribute = {
   name: string;
   value: string[];
@@ -5,7 +7,7 @@ type Attribute = {
   _id: string;
 };
 
-type Brand = {
+type ProductBrand = {
   name: string;
   id: string;
 };
@@ -25,7 +27,7 @@ export type Product = {
   discountPrice: number;
   images: string[];
   unit: string;
-  brand: Brand;
+  brand: ProductBrand;
   rating: number;
   attributes: Attribute[];
   category: Category;
@@ -48,6 +50,7 @@ export type Categories = {
 export type ProductsPageProps = {
   products: Product[];
   categories: Category[];
+  brands: Brand[];
   error?: string;
 };
 

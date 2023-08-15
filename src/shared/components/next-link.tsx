@@ -1,6 +1,6 @@
 import { Link as MuiLink } from "@mui/material";
 import Link from "next/link";
-import { NextLinkProps } from "../types/globalTypes";
+import { NextLinkProps } from "../types/global";
 
 /**
  * Wraps the Next.js Link component with MUI's Link styling.

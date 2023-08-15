@@ -10,7 +10,7 @@ import Document, {
 import { AppType } from "next/app";
 import { open_sans, theme } from "@/shared/constants/theme";
 import createEmotionCache from "@/shared/utils/createEmotionCache";
-import { CacheAppProps } from "@/shared/types/globalTypes";
+import { CacheAppProps } from "@/shared/types/global";
 import createEmotionServer from "@emotion/server/create-instance";
 
 /**

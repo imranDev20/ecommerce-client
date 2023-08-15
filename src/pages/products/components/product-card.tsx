@@ -1,4 +1,4 @@
-import { ProductProps } from "@/shared/types/productTypes";
+import { ProductProps } from "@/shared/types/product";
 import { slugifyTitle } from "@/shared/utils/functions";
 import { Box, Card, CardContent, Rating, Typography } from "@mui/material";
 import Image from "next/image";

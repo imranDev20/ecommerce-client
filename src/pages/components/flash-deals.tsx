@@ -1,4 +1,4 @@
-import { Products } from "@/shared/types/productTypes";
+import { Products } from "@/shared/types/product";
 import { Box, Grid, Typography } from "@mui/material";
 import ProductCard from "../products/components/product-card";
 import BoltIcon from "@mui/icons-material/Bolt";

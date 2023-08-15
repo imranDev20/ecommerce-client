@@ -1,4 +1,4 @@
-import { ChildrenNode } from "@/shared/types/globalTypes";
+import { ChildrenNode } from "@/shared/types/global";
 
 import {
   Box,

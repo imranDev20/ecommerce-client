@@ -8,6 +8,8 @@ export const getProducts = async (query?: any) => {
         : ""
     }&${query.brands ? `brands=${encodeURIComponent(query.brands)}` : ""}`;
 
+    console.log(url);
+
     return apiGet(url);
   }
 

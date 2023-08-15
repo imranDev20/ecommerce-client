@@ -1,4 +1,4 @@
-import { Products } from "@/shared/types/productTypes";
+import { Products } from "@/shared/types/product";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: Products = {

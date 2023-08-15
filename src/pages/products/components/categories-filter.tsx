@@ -1,4 +1,4 @@
-import { Categories } from "@/shared/types/productTypes";
+import { Categories } from "@/shared/types/product";
 import {
   Checkbox,
   List,
@@ -8,8 +8,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function CategoriesFilter({ categories }: Categories) {
+  const [checked, setChecked] = useState<boolean>(false);
   const router = useRouter();
 
   const queryCategories = router.query.categories
@@ -19,14 +21,20 @@ export default function CategoriesFilter({ categories }: Categories) {
     ? router.query.brands?.toString().split(",")
     : [];
 
+  const [checkedCategories, setCheckedCategories] =
+    useState<string[]>(queryCategories);
+
   const handleCategoryChange = (categoryName: string) => {
-    const updatedCategories = queryCategories.includes(categoryName)
-      ? queryCategories.filter((category) => category !== categoryName)
-      : [...queryCategories, categoryName];
+    // Optimistic UI update
+    const updatedCheckedCategories = checkedCategories.includes(categoryName)
+      ? checkedCategories.filter((category) => category !== categoryName)
+      : [...checkedCategories, categoryName];
+
+    setCheckedCategories(updatedCheckedCategories);
 
     const queryObject = {
-      ...(updatedCategories.length > 0 && {
-        categories: updatedCategories.join(","),
+      ...(updatedCheckedCategories.length > 0 && {
+        categories: updatedCheckedCategories.join(","),
       }),
 
       ...(queryBrands.length > 0 && {
@@ -55,7 +63,7 @@ export default function CategoriesFilter({ categories }: Categories) {
           <ListItem key={listItem._id} disableGutters disablePadding>
             <ListItemIcon sx={{ minWidth: "unset" }}>
               <Checkbox
-                checked={queryCategories.includes(listItem.name)}
+                checked={checkedCategories.includes(listItem.name)}
                 size="small"
                 edge="start"
                 onChange={() => handleCategoryChange(listItem.name)}

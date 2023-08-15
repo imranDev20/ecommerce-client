@@ -1,5 +1,5 @@
 import { Drawer } from "@mui/material";
-import { DynamicDrawerProps } from "../types/globalTypes";
+import { DynamicDrawerProps } from "../types/global";
 import { DRAWER_WIDTH } from "../constants/constants";
 
 export default function DynamicDrawer({

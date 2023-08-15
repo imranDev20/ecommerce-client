@@ -1,5 +1,5 @@
 import { PROFILE_ITEMS } from "@/shared/constants/constants";
-import { ProfileHeaderProps } from "@/shared/types/globalTypes";
+import { ProfileHeaderProps } from "@/shared/types/global";
 import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 

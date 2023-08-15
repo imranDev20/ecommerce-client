@@ -1,4 +1,4 @@
-import { ProductsCardProps } from "@/shared/types/productTypes";
+import { ProductsCardProps } from "@/shared/types/product";
 import ProductCard from "./product-card";
 import { useRouter } from "next/router";
 import { Grid } from "@mui/material";
