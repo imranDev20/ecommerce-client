@@ -21,7 +21,7 @@ export default function ProfileLayout({ children }: ChildrenNode) {
   const router = useRouter();
 
   return (
-    <Container sx={{ mt: 2 }}>
+    <Container sx={{ mt: 5 }}>
       <Grid container spacing={3}>
         <Grid item sm={3}>
           <List

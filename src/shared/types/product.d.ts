@@ -20,6 +20,11 @@ export type Category = {
   __v: number;
 };
 
+export type CategoryInProduct = {
+  id: string;
+  name: string;
+};
+
 export type Product = {
   name: string;
   description: string;
@@ -30,8 +35,10 @@ export type Product = {
   brand: ProductBrand;
   rating: number;
   attributes: Attribute[];
-  category: Category;
+  category: CategoryInProduct;
   _id: string;
+  createdAt: string;
+  updatedAt: string;
   __v: number;
 };
 

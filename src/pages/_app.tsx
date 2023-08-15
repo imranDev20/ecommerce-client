@@ -10,6 +10,8 @@ import createEmotionCache from "@/shared/utils/createEmotionCache";
 import { Provider } from "react-redux";
 import { store } from "@/shared/redux/store";
 import NextNProgress from "nextjs-progressbar";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -44,20 +46,22 @@ export default function App(props: CacheAppProps): JSX.Element {
 
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <NextNProgress
-            color={theme.palette.primary.main}
-            startPosition={0.3}
-            stopDelayMs={200}
-            height={3}
-            showOnShallow={true}
-            options={{ easing: "ease", speed: 500 }}
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <NextNProgress
+              color={theme.palette.primary.main}
+              startPosition={0.3}
+              stopDelayMs={200}
+              height={3}
+              showOnShallow={true}
+              options={{ easing: "ease", speed: 500 }}
+            />
 
-          <RootLayout>
-            <Component {...pageProps} />
-          </RootLayout>
+            <RootLayout>
+              <Component {...pageProps} />
+            </RootLayout>
+          </LocalizationProvider>
         </ThemeProvider>
       </Provider>
     </CacheProvider>
