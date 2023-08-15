@@ -51,8 +51,6 @@ export default function ProfilePage({ user }: UserProps) {
     },
   ];
 
-  console.log(user);
-
   if (!user) {
     return <Box>There was a problem getting the user information</Box>;
   }

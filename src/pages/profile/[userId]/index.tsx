@@ -46,7 +46,6 @@ export default function EditProfilePage({ user }: UserProps) {
 
   const onSubmit = async (data: IFormInput) => {
     if (!userId) {
-      console.log("Invalid user id");
       return;
     }
 

@@ -16,7 +16,7 @@ import Link from "next/link";
 const orders = [
   {
     id: "1",
-    orderId: "f0ba538b",
+    orderId: "f0ba538",
     satus: "Pending",
     date: "Nov 10, 2022",
     price: "$350.00",
