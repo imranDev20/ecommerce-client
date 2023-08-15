@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function BrandsFilter({ brands }: Brands) {
   const router = useRouter();
@@ -19,17 +20,22 @@ export default function BrandsFilter({ brands }: Brands) {
     ? router.query.brands?.toString().split(",")
     : [];
 
+  const [checkedBrands, setCheckedBrands] = useState<string[]>(queryBrands);
+
   const handleCategoryChange = (categoryName: string) => {
-    const updatedBrands = queryBrands.includes(categoryName)
-      ? queryBrands.filter((category) => category !== categoryName)
-      : [...queryBrands, categoryName];
+    // Optimistic UI Update
+    const updatedCheckedBrands = checkedBrands.includes(categoryName)
+      ? checkedBrands.filter((category) => category !== categoryName)
+      : [...checkedBrands, categoryName];
+
+    setCheckedBrands(updatedCheckedBrands);
 
     const queryObject = {
       ...(queryCategories.length > 0 && {
         categories: queryCategories.join(","),
       }),
-      ...(updatedBrands.length > 0 && {
-        brands: updatedBrands.join(","),
+      ...(updatedCheckedBrands.length > 0 && {
+        brands: updatedCheckedBrands.join(","),
       }),
     };
 
@@ -46,7 +52,7 @@ export default function BrandsFilter({ brands }: Brands) {
 
   return (
     <>
-      <Typography component="h3" fontSize={18} fontWeight={500}>
+      <Typography component="h3" fontSize={16} fontWeight={600}>
         Brands
       </Typography>
       <List dense>
@@ -54,7 +60,7 @@ export default function BrandsFilter({ brands }: Brands) {
           <ListItem key={brand._id} disableGutters disablePadding>
             <ListItemIcon sx={{ minWidth: "unset" }}>
               <Checkbox
-                checked={queryBrands.includes(brand.name)}
+                checked={checkedBrands.includes(brand.name)}
                 size="small"
                 edge="start"
                 onChange={() => handleCategoryChange(brand.name)}

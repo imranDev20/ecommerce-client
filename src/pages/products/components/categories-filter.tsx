@@ -55,7 +55,7 @@ export default function CategoriesFilter({ categories }: Categories) {
 
   return (
     <>
-      <Typography component="h3" fontSize={18} fontWeight={500}>
+      <Typography component="h3" fontSize={16} fontWeight={600}>
         Categories
       </Typography>
       <List dense>

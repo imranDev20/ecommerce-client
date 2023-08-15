@@ -1,8 +1,9 @@
 import { Card, CardContent, Divider } from "@mui/material";
-import DynamicFilterBlocks from "./dynamic-filter-blocks";
 import CategoriesFilter from "./categories-filter";
 import BrandsFilter from "./brands-filter";
 import { ProductsSidebarProps } from "@/shared/types/global";
+import RandomFilters from "./random-filters";
+import RatingsFilter from "./ratings-filter";
 
 export default function ProductsSidebar({
   categories,
@@ -18,10 +19,10 @@ export default function ProductsSidebar({
 
         <Divider sx={{ my: 2 }} />
 
-        <DynamicFilterBlocks list={["On Sale", "In Stock", "Features"]} />
+        <RandomFilters />
         <Divider sx={{ my: 2 }} />
 
-        <DynamicFilterBlocks title="Ratings" list={["star", "red dwarf"]} />
+        <RatingsFilter />
       </CardContent>
     </Card>
   );
