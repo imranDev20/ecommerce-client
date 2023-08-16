@@ -12,12 +12,12 @@ export const apiGet = async (url: string, params?: object) => {
 export const apiGetSingle = async (
   url: string,
   id: string,
-  populate?: string,
+  aggregate?: string,
   params?: object
 ) => {
   try {
     const response = await http.get(
-      `${url}/${id}${populate ? `?populate=${populate}` : ""}`,
+      `${url}/${id}${aggregate ? `?aggregate=${aggregate}` : ""}`,
       { params }
     );
 

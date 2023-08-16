@@ -65,3 +65,16 @@ export type ProductsCardProps = {
   products: Product[];
   error?: string;
 };
+
+export type WishlistProduct = {
+  _id: string;
+  name: string;
+  images: string[];
+  regularPrice: number;
+  discountPrice: number;
+  rating: number;
+};
+
+export type WishListCardProps = {
+  product: WishlistProduct;
+};

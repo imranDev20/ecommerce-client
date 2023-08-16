@@ -45,8 +45,7 @@ const orders = [
   },
 ];
 
-type Props = {};
-export default function OrdersPage({}: Props) {
+export default function OrdersPage() {
   const [page, setPage] = useState(1);
   const handleChange = (event: ChangeEvent<unknown>, value: number) => {
     setPage(value);

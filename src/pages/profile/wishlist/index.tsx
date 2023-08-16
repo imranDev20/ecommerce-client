@@ -5,7 +5,9 @@ import ProductCard from "@/pages/products/components/product-card";
 import { Grid } from "@mui/material";
 
 export default function WishListPage({ user }: WishListProps) {
-  const products = user.wishlist;
+  const products = user.wishlistProducts;
+
+  console.log(user);
 
   return (
     <ProfileLayout>

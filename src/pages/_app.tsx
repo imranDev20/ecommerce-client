@@ -51,11 +51,11 @@ export default function App(props: CacheAppProps): JSX.Element {
             <CssBaseline />
             <NextNProgress
               color={theme.palette.primary.main}
-              startPosition={0.3}
-              stopDelayMs={200}
+              startPosition={0.5}
+              stopDelayMs={50}
               height={3}
               showOnShallow={true}
-              options={{ easing: "ease", speed: 500 }}
+              options={{ easing: "ease-in-out", speed: 400 }}
             />
 
             <RootLayout>

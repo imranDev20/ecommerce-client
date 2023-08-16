@@ -1,4 +1,4 @@
-import { Product } from "./product";
+import { Product, WishlistProduct } from "./product";
 
 type PaymentMethod = {
   type: string;
@@ -34,25 +34,16 @@ export type User = {
   __v: number;
 };
 
-export type UserWishListPopulated = {
+type UserWithWishlist = {
   _id: string;
   email: string;
-  phone: string;
   firstName: string;
   lastName: string;
-  birthDate: string;
-  paymentMethods: PaymentMethod[];
-  wishlist: Product[]; // You can replace 'any' with a more specific type if needed
-  addresses: Address[];
-  supportTicket: any[]; // You can replace 'any' with a more specific type if needed
-  orders: any[]; // You can replace 'any' with a more specific type if needed
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  wishlistProducts: WishlistProduct[];
 };
 
 export type WishListProps = {
-  user: UserWishListPopulated;
+  user: UserWithWishlist;
 };
 
 export type UserProps = {

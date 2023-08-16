@@ -1,4 +1,4 @@
-import { ProductProps } from "@/shared/types/product";
+import { ProductProps, WishListCardProps } from "@/shared/types/product";
 import { slugifyTitle } from "@/shared/utils/functions";
 import { Box, Card, CardContent, Rating, Typography } from "@mui/material";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import Link from "next/link";
 import { NumericFormat } from "react-number-format";
 import ProductCardButtons from "./product-card-buttons";
 
-export default function ProductCard({ product }: ProductProps) {
+export default function ProductCard({ product }: WishListCardProps) {
   if (product && Object.keys(product).length > 0) {
     const slug = slugifyTitle(product?.name);
 

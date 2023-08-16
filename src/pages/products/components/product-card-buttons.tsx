@@ -1,10 +1,10 @@
 import React from "react";
 import { Button, Stack, Typography } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
-import { ProductProps } from "@/shared/types/product";
+import { ProductProps, WishListCardProps } from "@/shared/types/product";
 import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
 
-const ProductCardButtons = ({ product }: ProductProps) => {
+const ProductCardButtons = ({ product }: WishListCardProps) => {
   const dispatch = useAppDispatch();
 
   const handleAddToCart = () => {};
