@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Stack, Typography } from "@mui/material";
 import CategoryAccordion from "./category-accordion";
 
-import { HOME_CATEGORIES } from "@/shared/constants/constants";
+import { HOME_CATEGORIES } from "@/shared/config/constants";
 import Link from "next/link";
 
 const CategoriesMenu = () => {

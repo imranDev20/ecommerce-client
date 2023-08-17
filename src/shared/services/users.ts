@@ -4,8 +4,8 @@ export const getUsers = async () => {
   return apiGet("/users");
 };
 
-export const getUser = async (id: string, aggregate?: string) => {
-  return apiGetSingle("/users", id, aggregate);
+export const getUser = async (email: string, aggregate?: string) => {
+  return apiGetSingle("/users", email, aggregate);
 };
 
 export const createUser = async (userData: object) => {

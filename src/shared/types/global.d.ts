@@ -3,6 +3,7 @@ import { EmotionCache } from "@emotion/react";
 import { SvgIconComponent } from "@mui/icons-material";
 import { Category } from "./product";
 import { Brand } from "./brand";
+import React from "react";
 
 export type ChildrenNode = {
   children: React.ReactNode;
@@ -37,4 +38,12 @@ export type DynamicDrawerProps = {
 export type ProductsSidebarProps = {
   categories: Category[];
   brands: Brand[];
+};
+
+export type DynamicDialogProps = {
+  open: boolean;
+  title?: string;
+  content: React.ReactNode;
+  isAction?: boolean;
+  handleClose: () => void;
 };

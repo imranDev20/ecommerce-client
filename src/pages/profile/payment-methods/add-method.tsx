@@ -10,7 +10,7 @@ import {
 import ProfileLayout from "../components/layout";
 import Link from "next/link";
 import ProfileHeader from "../components/profile-header";
-import { PROFILE_ITEMS } from "@/shared/constants/constants";
+import { PROFILE_ITEMS } from "@/shared/config/constants";
 
 export default function AddMethodPage() {
   return (

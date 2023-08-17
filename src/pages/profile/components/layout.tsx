@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import React from "react";
 
-import { PROFILE_GROUPS, PROFILE_ITEMS } from "@/shared/constants/constants";
+import { PROFILE_GROUPS, PROFILE_ITEMS } from "@/shared/config/constants";
 import Link from "next/link";
 import { useRouter } from "next/router";
 

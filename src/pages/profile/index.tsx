@@ -6,8 +6,9 @@ import { getUser } from "@/shared/services/users";
 import { UserProps } from "@/shared/types/user";
 import ProfileHeader from "./components/profile-header";
 import dayjs from "dayjs";
+import withAuth from "@/shared/components/hocs/withAuth";
 
-export default function ProfilePage({ user }: UserProps) {
+function ProfilePage({ user }: UserProps) {
   const orders = [
     {
       id: "1",
@@ -240,7 +241,15 @@ export default function ProfilePage({ user }: UserProps) {
 
 export const getServerSideProps = async (context: NextPageContext) => {
   try {
-    const userResponse = await getUser("64dbbef20a7518a817591bb2");
+    console.log(context.query);
+
+    const email = context.query.email as string;
+
+    if (!email) {
+      throw Error("Email not found in query string");
+    }
+
+    const userResponse = await getUser(email);
 
     if (!userResponse?.success) {
       throw Error();
@@ -259,3 +268,5 @@ export const getServerSideProps = async (context: NextPageContext) => {
     };
   }
 };
+
+export default withAuth(ProfilePage);

@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { ChildrenNode } from "@/shared/types/global";
-import { DRAWER_WIDTH as drawerWidth } from "@/shared/constants/constants";
+import { DRAWER_WIDTH as drawerWidth } from "@/shared/config/constants";
 import Header from "./header/header";
 import DynamicDrawer from "@/shared/components/dynamic-drawer";
 import Cart from "./cart";

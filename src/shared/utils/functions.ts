@@ -1,4 +1,5 @@
 import slugify from "slugify";
+import { User } from "../types/user";
 
 export const slugifyTitle = (title: string): string => {
   return slugify(title, {
@@ -10,3 +11,16 @@ export const slugifyTitle = (title: string): string => {
     trim: true,
   });
 };
+
+export function setTokenInLocalStorage(token: string) {
+  localStorage.setItem("authToken", token);
+}
+
+export function getTokenFromLocalStorage() {
+  const token = localStorage.getItem("authToken");
+  return token;
+}
+
+export function checkLoggedInStatus(user: User | {}) {
+  return Object.keys(user).length > 0;
+}

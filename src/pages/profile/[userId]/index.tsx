@@ -22,6 +22,7 @@ import { UserProps } from "@/shared/types/user";
 import { useForm, Controller } from "react-hook-form";
 import dayjs, { Dayjs } from "dayjs";
 import { useRouter } from "next/router";
+import withAuth from "@/shared/components/hocs/withAuth";
 
 interface IFormInput {
   firstName: string;
@@ -31,7 +32,7 @@ interface IFormInput {
   birthDate: Dayjs;
 }
 
-export default function EditProfilePage({ user }: UserProps) {
+function EditProfilePage({ user }: UserProps) {
   const { control, handleSubmit } = useForm<IFormInput>({
     defaultValues: {
       firstName: user?.firstName,
@@ -233,3 +234,5 @@ export const getServerSideProps = async (context: NextPageContext) => {
     };
   }
 };
+
+export default withAuth(EditProfilePage);
