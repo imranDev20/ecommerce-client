@@ -8,7 +8,7 @@ import Document, {
   DocumentContext,
 } from "next/document";
 import { AppType } from "next/app";
-import { open_sans, theme } from "@/shared/config/theme";
+import { open_sans, theme } from "@/shared/configs/theme";
 import createEmotionCache from "@/shared/utils/createEmotionCache";
 import { CacheAppProps } from "@/shared/types/global";
 import createEmotionServer from "@emotion/server/create-instance";

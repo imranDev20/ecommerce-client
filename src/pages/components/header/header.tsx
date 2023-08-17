@@ -19,13 +19,13 @@ import {
 import { ChildrenElement } from "@/shared/types/global";
 import SearchField from "./search-field";
 import NextLink from "@/shared/components/next-link";
-import { HEADER_LINKS } from "@/shared/config/constants";
+import { HEADER_LINKS } from "@/shared/configs/constants";
 import { cloneElement, useEffect, useState } from "react";
 import DynamicDialog from "@/shared/components/dynamic-dialog";
 import Link from "next/link";
 import SignIn from "../sign-in";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/shared/config/auth";
+import { auth } from "@/shared/configs/auth";
 import { useRouter } from "next/router";
 
 type Props = {
@@ -49,7 +49,6 @@ export default function Header({ handleDrawerToggle }: Props) {
 
     const email = user.email as string;
 
-    console.log(user.email);
     router.push(
       {
         pathname: "/profile",

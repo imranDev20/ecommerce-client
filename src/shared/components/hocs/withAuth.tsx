@@ -1,4 +1,4 @@
-import { auth } from "@/shared/config/auth";
+import { auth } from "@/shared/configs/auth";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";

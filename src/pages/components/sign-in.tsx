@@ -11,7 +11,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "@/shared/config/auth";
+import { auth } from "@/shared/configs/auth";
 import { Controller, useForm } from "react-hook-form";
 import { getUser } from "@/shared/services/users";
 import { useAppDispatch } from "@/shared/redux/hooks";

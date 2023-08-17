@@ -13,12 +13,30 @@ import {
 } from "@mui/material";
 import React from "react";
 
-import { PROFILE_GROUPS, PROFILE_ITEMS } from "@/shared/config/constants";
+import { PROFILE_GROUPS, PROFILE_ITEMS } from "@/shared/configs/constants";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/shared/configs/auth";
 
 export default function ProfileLayout({ children }: ChildrenNode) {
   const router = useRouter();
+
+  const [user] = useAuthState(auth);
+
+  const handleClick = (route: string) => {
+    if (!user) {
+      console.log("User not found");
+      return;
+    }
+    router.push(
+      {
+        pathname: `/profile/${route}`,
+        query: { email: user.email },
+      },
+      `/profile/${route}`
+    );
+  };
 
   return (
     <Container sx={{ mt: 5 }}>
@@ -57,6 +75,7 @@ export default function ProfileLayout({ children }: ChildrenNode) {
                       >
                         <ListItemButton
                           disableRipple
+                          onClick={() => handleClick(item.route)}
                           sx={{
                             borderLeft: "4px solid",
                             borderLeftColor: "transparent",
@@ -81,8 +100,6 @@ export default function ProfileLayout({ children }: ChildrenNode) {
                               ? router.pathname === "/profile"
                               : router.pathname.includes(item.route)
                           }
-                          LinkComponent={Link}
-                          href={`/profile/${item.route}`}
                         >
                           <ListItemIcon
                             sx={{

@@ -3,11 +3,13 @@ import ProfileLayout from "../components/layout";
 import { WishListProps } from "@/shared/types/user";
 import ProductCard from "@/pages/products/components/product-card";
 import { Grid } from "@mui/material";
+import { NextPageContext } from "next";
+import useNavigation from "@/shared/hooks/useNavigation";
 
 export default function WishListPage({ user }: WishListProps) {
-  const products = user.wishlistProducts;
+  useNavigation("/profile/wishlist");
 
-  console.log(user);
+  const products = user && user.wishlistProducts;
 
   return (
     <ProfileLayout>
@@ -23,9 +25,11 @@ export default function WishListPage({ user }: WishListProps) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context: NextPageContext) => {
+  const email = context.query.email as string;
+
   try {
-    const userResponse = await getUser("64dbbef20a7518a817591bb2", "wishlist");
+    const userResponse = await getUser(email, "wishlist");
     const user = userResponse.data;
 
     if (!userResponse?.success) {

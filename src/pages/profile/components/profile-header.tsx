@@ -1,4 +1,4 @@
-import { PROFILE_ITEMS } from "@/shared/config/constants";
+import { PROFILE_ITEMS } from "@/shared/configs/constants";
 import { ProfileHeaderProps } from "@/shared/types/global";
 import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";

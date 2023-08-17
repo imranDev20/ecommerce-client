@@ -2,7 +2,7 @@ import * as React from "react";
 import Head from "next/head";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { theme } from "@/shared/config/theme";
+import { theme } from "@/shared/configs/theme";
 import { CacheAppProps } from "@/shared/types/global";
 import RootLayout from "./components/layout";
 import { CacheProvider } from "@emotion/react";
