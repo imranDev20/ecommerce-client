@@ -13,9 +13,8 @@ import Container from "@mui/material/Container";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "@/shared/configs/auth";
 import { Controller, useForm } from "react-hook-form";
-import { getUser } from "@/shared/services/users";
-import { useAppDispatch } from "@/shared/redux/hooks";
-import { setUser } from "@/shared/redux/slices/userSlice";
+import { loginUser } from "@/shared/services/users";
+import { setTokenInLocalStorage } from "@/shared/utils/functions";
 
 interface IFormInput {
   email: string;
@@ -60,19 +59,20 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
     try {
       const email = data.email;
       const password = data.password;
-      const remember = data.remember;
+      // const remember = data.remember;
 
       const firebaseUser = await signInWithEmailAndPassword(email, password);
 
       if (!firebaseUser?.user.email) {
-        throw Error("Not found in firebase");
+        throw Error("User is not authenticated.");
       }
-      const user = await getUser(firebaseUser.user.email);
+      const userResponse = await loginUser(firebaseUser.user.email);
 
-      if (!user) {
-        throw Error("Not found in database");
+      if (!userResponse) {
+        throw Error("User not found in database.");
       }
 
+      setTokenInLocalStorage(userResponse.accessToken);
       handleDialogClose();
     } catch (error) {
       console.log(error);

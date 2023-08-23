@@ -1,15 +1,16 @@
-import { getUser } from "@/shared/services/users";
 import ProfileLayout from "../components/layout";
-import { WishListProps } from "@/shared/types/user";
 import ProductCard from "@/pages/products/components/product-card";
+import { useGetAggregatedLoggedInUserQuery } from "@/shared/redux/api/usersApiSlice";
 import { Grid } from "@mui/material";
-import { NextPageContext } from "next";
-import useNavigation from "@/shared/hooks/useNavigation";
 
-export default function WishListPage({ user }: WishListProps) {
-  useNavigation("/profile/wishlist");
+export default function WishListPage() {
+  const { data: user } = useGetAggregatedLoggedInUserQuery({
+    aggregate: "wishlist",
+  });
 
-  const products = user && user.wishlistProducts;
+  const products = user?.wishlistProducts;
+
+  console.log(products);
 
   return (
     <ProfileLayout>
@@ -24,28 +25,3 @@ export default function WishListPage({ user }: WishListProps) {
     </ProfileLayout>
   );
 }
-
-export const getServerSideProps = async (context: NextPageContext) => {
-  const email = context.query.email as string;
-
-  try {
-    const userResponse = await getUser(email, "wishlist");
-    const user = userResponse.data;
-
-    if (!userResponse?.success) {
-      throw Error();
-    }
-
-    return {
-      props: {
-        user: user,
-      },
-    };
-  } catch (error) {
-    return {
-      props: {
-        error: {},
-      },
-    };
-  }
-};

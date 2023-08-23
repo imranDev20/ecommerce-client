@@ -9,7 +9,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import {
   Badge,
-  CircularProgress,
   Container,
   Slide,
   Stack,
@@ -24,9 +23,6 @@ import { cloneElement, useEffect, useState } from "react";
 import DynamicDialog from "@/shared/components/dynamic-dialog";
 import Link from "next/link";
 import SignIn from "../sign-in";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/shared/configs/auth";
-import { useRouter } from "next/router";
 
 type Props = {
   handleDrawerToggle: () => void;
@@ -34,28 +30,9 @@ type Props = {
 
 export default function Header({ handleDrawerToggle }: Props) {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
-  const [user, loading, error] = useAuthState(auth);
-  const router = useRouter();
 
   const handleDialogClose = () => {
     setDialogOpen(false);
-  };
-
-  const handleProfileClick = () => {
-    if (!user) {
-      console.log("user not found");
-      return;
-    }
-
-    const email = user.email as string;
-
-    router.push(
-      {
-        pathname: "/profile",
-        query: { email: email },
-      },
-      "/profile"
-    );
   };
 
   return (
@@ -106,28 +83,21 @@ export default function Header({ handleDrawerToggle }: Props) {
               <SearchField />
 
               <Stack direction="row" spacing={3}>
-                {!user && loading && <CircularProgress size={44} />}
+                <IconButton
+                  LinkComponent={Link}
+                  href={"/profile"}
+                  sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}
+                >
+                  <PersonOutlineOutlinedIcon />
+                </IconButton>
 
-                {user && !loading && (
-                  <IconButton
-                    // LinkComponent={Link}
-                    // href="/profile"
-                    onClick={handleProfileClick}
-                    sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}
-                  >
-                    <PersonOutlineOutlinedIcon />
-                  </IconButton>
-                )}
-
-                {!user && !loading && (
-                  <IconButton
-                    LinkComponent={Link}
-                    sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}
-                    onClick={() => setDialogOpen(true)}
-                  >
-                    <LoginRoundedIcon />
-                  </IconButton>
-                )}
+                <IconButton
+                  LinkComponent={Link}
+                  sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}
+                  onClick={() => setDialogOpen(true)}
+                >
+                  <LoginRoundedIcon />
+                </IconButton>
 
                 <Badge
                   overlap="circular"
@@ -228,11 +198,13 @@ export default function Header({ handleDrawerToggle }: Props) {
                 <SearchField />
 
                 <Stack direction="row" spacing={3}>
-                  <NextLink href="/profile">
-                    <IconButton sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}>
-                      <PersonOutlineOutlinedIcon />
-                    </IconButton>
-                  </NextLink>
+                  <IconButton
+                    LinkComponent={Link}
+                    href={"/profile"}
+                    sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}
+                  >
+                    <PersonOutlineOutlinedIcon />
+                  </IconButton>
 
                   <Badge
                     overlap="circular"

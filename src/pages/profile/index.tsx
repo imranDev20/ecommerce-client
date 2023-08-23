@@ -1,60 +1,13 @@
-import { NextPageContext } from "next";
 import Link from "next/link";
 import { Avatar, Box, Button, Grid, Paper, Typography } from "@mui/material";
 import ProfileLayout from "./components/layout";
-import { getUser } from "@/shared/services/users";
-import { UserProps } from "@/shared/types/user";
 import ProfileHeader from "./components/profile-header";
 import dayjs from "dayjs";
 import withAuth from "@/shared/components/hocs/withAuth";
+import { useGetLoggedInUserQuery } from "@/shared/redux/api/usersApiSlice";
 
-function ProfilePage({ user }: UserProps) {
-  const orders = [
-    {
-      id: "1",
-      firstName: "Nick",
-      lastName: "DuBuque",
-      email: "Jayden.Gislason78@gmail.com",
-      phone: "(445) 653-3771 x985",
-      birth: "26 Apr, 1996",
-      item: "All Orders",
-      order: "16",
-    },
-    {
-      id: "2",
-      firstName: "Nick",
-      lastName: "DuBuque",
-      email: "Jayden.Gislason78@gmail.com",
-      phone: "(445) 653-3771 x985",
-      birth: "26 Apr, 1996",
-      item: "Awaiting Payments",
-      order: "02",
-    },
-    {
-      id: "3",
-      firstName: "Nick",
-      lastName: "DuBuque",
-      email: "Jayden.Gislason78@gmail.com",
-      phone: "(445) 653-3771 x985",
-      birth: "26 Apr, 1996",
-      item: "Awaiting Shipment",
-      order: "00",
-    },
-    {
-      id: "4",
-      firstName: "Nick",
-      lastName: "DuBuque",
-      email: "Jayden.Gislason78@gmail.com",
-      phone: "(445) 653-3771 x985",
-      birth: "26 Apr, 1996",
-      item: "Awaiting Delivery",
-      order: "01",
-    },
-  ];
-
-  if (!user) {
-    return <Box>There was a problem getting the user information</Box>;
-  }
+function ProfilePage() {
+  const { data: user } = useGetLoggedInUserQuery();
 
   const userInfo = [
     {
@@ -92,7 +45,7 @@ function ProfilePage({ user }: UserProps) {
           <Button
             variant="contained"
             LinkComponent={Link}
-            href={`/profile/${user._id}`}
+            href={`/profile/edit`}
           >
             Edit Profile
           </Button>
@@ -132,7 +85,7 @@ function ProfilePage({ user }: UserProps) {
                         color: "#2b3445",
                       }}
                     >
-                      {user.firstName} {user.lastName}
+                      {user && user.firstName} {user && user.lastName}
                     </Typography>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                       <Typography
@@ -165,7 +118,7 @@ function ProfilePage({ user }: UserProps) {
               </Paper>
             </Grid>
             <Grid item md={6}>
-              <Grid container spacing={3}>
+              {/* <Grid container spacing={3}>
                 {orders.map((order) => (
                   <Grid key={order.id} item md={3}>
                     <Paper
@@ -200,7 +153,7 @@ function ProfilePage({ user }: UserProps) {
                     </Paper>
                   </Grid>
                 ))}
-              </Grid>
+              </Grid> */}
             </Grid>
           </Grid>
         </Box>
@@ -238,35 +191,5 @@ function ProfilePage({ user }: UserProps) {
     </>
   );
 }
-
-export const getServerSideProps = async (context: NextPageContext) => {
-  try {
-    console.log(context.query);
-
-    const email = context.query.email as string;
-
-    if (!email) {
-      throw Error("Email not found in query string");
-    }
-
-    const userResponse = await getUser(email);
-
-    if (!userResponse?.success) {
-      throw Error();
-    }
-
-    const user = userResponse.data;
-
-    return {
-      props: {
-        user: user,
-      },
-    };
-  } catch (error) {
-    return {
-      props: { error: error instanceof Error ? error.message : String(error) },
-    };
-  }
-};
 
 export default withAuth(ProfilePage);

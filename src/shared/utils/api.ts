@@ -12,15 +12,10 @@ export const apiGet = async (url: string, params?: object) => {
 export const apiGetSingle = async (
   url: string,
   id: string,
-  aggregate?: string,
   params?: object
 ) => {
   try {
-    const response = await http.get(
-      `${url}/${id}${aggregate ? `?aggregate=${aggregate}` : ""}`,
-      { params }
-    );
-
+    const response = await http.get(`${url}/${id}`, { params });
     return response.data;
   } catch (error) {
     throw error;
@@ -36,7 +31,11 @@ export const apiPost = async (url: string, data: object) => {
   }
 };
 
-export const apiPatch = async (url: string, id: string, data: object) => {
+export const apiPatch = async (
+  url: string,
+  id: string,
+  data: object | null
+) => {
   try {
     const response = await http.patch(`${url}/${id}`, data);
     return response.data;

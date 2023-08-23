@@ -21,22 +21,9 @@ import { auth } from "@/shared/configs/auth";
 
 export default function ProfileLayout({ children }: ChildrenNode) {
   const router = useRouter();
-
   const [user] = useAuthState(auth);
 
-  const handleClick = (route: string) => {
-    if (!user) {
-      console.log("User not found");
-      return;
-    }
-    router.push(
-      {
-        pathname: `/profile/${route}`,
-        query: { email: user.email },
-      },
-      `/profile/${route}`
-    );
-  };
+  const email = user?.email as string;
 
   return (
     <Container sx={{ mt: 5 }}>
@@ -75,7 +62,8 @@ export default function ProfileLayout({ children }: ChildrenNode) {
                       >
                         <ListItemButton
                           disableRipple
-                          onClick={() => handleClick(item.route)}
+                          LinkComponent={Link}
+                          href={`/profile/${item.route}`}
                           sx={{
                             borderLeft: "4px solid",
                             borderLeftColor: "transparent",

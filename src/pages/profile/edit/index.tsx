@@ -16,13 +16,12 @@ import ProfileLayout from "../components/layout";
 import ProfileHeader from "../components/profile-header";
 import { PersonOutline } from "@mui/icons-material";
 import Link from "next/link";
-import { NextPageContext } from "next";
-import { getUser, updateUser } from "@/shared/services/users";
-import { UserProps } from "@/shared/types/user";
 import { useForm, Controller } from "react-hook-form";
 import dayjs, { Dayjs } from "dayjs";
 import { useRouter } from "next/router";
 import withAuth from "@/shared/components/hocs/withAuth";
+import { useGetLoggedInUserQuery } from "@/shared/redux/api/usersApiSlice";
+import { useEffect } from "react";
 
 interface IFormInput {
   firstName: string;
@@ -32,41 +31,51 @@ interface IFormInput {
   birthDate: Dayjs;
 }
 
-function EditProfilePage({ user }: UserProps) {
-  const { control, handleSubmit } = useForm<IFormInput>({
+function EditProfilePage() {
+  const { data: user } = useGetLoggedInUserQuery();
+
+  const { control, handleSubmit, reset } = useForm<IFormInput>({
     defaultValues: {
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      email: user?.email,
-      phone: user?.phone,
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
       birthDate: dayjs(user?.birthDate),
     },
   });
-  const router = useRouter();
-  const userId = router.query?.userId as string;
 
   const onSubmit = async (data: IFormInput) => {
-    if (!userId) {
-      return;
-    }
-
     const userData = {
       ...data,
       birthDate: data.birthDate.format(),
     };
-    const response = await updateUser(userId, userData);
+    // const response = await updateUser(userId, userData);
 
-    if (!response?.success) {
-      throw Error();
-    }
-
-    router.replace(router.asPath, undefined, { shallow: false });
+    // if (!response?.success) {
+    //   throw Error();
+    // }
   };
+
+  useEffect(() => {
+    if (user) {
+      reset({
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        email: user?.email,
+        phone: user?.phone,
+        birthDate: dayjs(user?.birthDate),
+      });
+    }
+  }, [user, reset]);
 
   return (
     <ProfileLayout>
       <ProfileHeader title="Edit Profile" icon={PersonOutline}>
-        <Button variant="contained" LinkComponent={Link} href="/profile">
+        <Button
+          variant="contained"
+          LinkComponent={Link}
+          href={`/profile?userId=${user?.email}`}
+        >
           Back to Profile
         </Button>
       </ProfileHeader>
@@ -205,34 +214,5 @@ function EditProfilePage({ user }: UserProps) {
     </ProfileLayout>
   );
 }
-
-export const getServerSideProps = async (context: NextPageContext) => {
-  try {
-    const { query } = context;
-    const userId = query?.userId as string;
-
-    if (!userId) {
-      throw Error();
-    }
-
-    const userResponse = await getUser(userId);
-
-    if (!userResponse?.success) {
-      throw Error();
-    }
-
-    const user = userResponse.data;
-
-    return {
-      props: {
-        user: user,
-      },
-    };
-  } catch (error) {
-    return {
-      props: { error: error instanceof Error ? error.message : String(error) },
-    };
-  }
-};
 
 export default withAuth(EditProfilePage);
