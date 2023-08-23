@@ -19,29 +19,15 @@ import Cart from "./cart";
  */
 
 export default function RootLayout({ children }: ChildrenNode): JSX.Element {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
   return (
     <>
-      <Header handleDrawerToggle={handleDrawerToggle} />
+      <Header />
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-
-        <DynamicDrawer
-          anchor="right"
-          mobileOpen={mobileOpen}
-          handleDrawerToggle={handleDrawerToggle}
-        >
-          <Cart />
-        </DynamicDrawer>
       </Box>
       <Box component="main" sx={{ height: "1000vh" }}>
         {children}

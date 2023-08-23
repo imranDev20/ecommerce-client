@@ -1,20 +1,18 @@
-import { auth } from "@/shared/configs/auth";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import Router from "next/router";
+import { useGetLoggedInUserQuery } from "@/shared/redux/api/usersApiSlice";
 
 type ComponentType = React.ComponentType<any>;
 
 export default function withAuth(Component: ComponentType) {
   return function ProtectedRoute({ ...props }) {
-    const router = useRouter();
-    const [user, loading, error] = useAuthState(auth);
+    const { data: user, isLoading, isFetching } = useGetLoggedInUserQuery();
 
     useEffect(() => {
-      if (!loading && !user) {
-        router.push("/signin");
+      if (!isLoading && !user) {
+        Router.push("/signin");
       }
-    }, [loading, user, router]);
+    }, [isLoading, user]);
 
     return <Component {...props} />;
   };

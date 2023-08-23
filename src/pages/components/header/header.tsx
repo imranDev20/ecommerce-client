@@ -1,40 +1,25 @@
+import { cloneElement, useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import {
-  Badge,
   Container,
   Slide,
   Stack,
   Typography,
   useScrollTrigger,
 } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
 import { ChildrenElement } from "@/shared/types/global";
 import SearchField from "./search-field";
 import NextLink from "@/shared/components/next-link";
 import { HEADER_LINKS } from "@/shared/configs/constants";
-import { cloneElement, useEffect, useState } from "react";
-import DynamicDialog from "@/shared/components/dynamic-dialog";
-import Link from "next/link";
-import SignIn from "../sign-in";
+import RightOptions from "./right-options";
 
-type Props = {
-  handleDrawerToggle: () => void;
-};
-
-export default function Header({ handleDrawerToggle }: Props) {
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
-
-  const handleDialogClose = () => {
-    setDialogOpen(false);
-  };
-
+export default function Header() {
   return (
     <>
       <AppBar position="static" color="inherit" elevation={0}>
@@ -82,56 +67,7 @@ export default function Header({ handleDrawerToggle }: Props) {
               {/* Flex Grow of 1 on paper is making it full width */}
               <SearchField />
 
-              <Stack direction="row" spacing={3}>
-                <IconButton
-                  LinkComponent={Link}
-                  href={"/profile"}
-                  sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}
-                >
-                  <PersonOutlineOutlinedIcon />
-                </IconButton>
-
-                <IconButton
-                  LinkComponent={Link}
-                  sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}
-                  onClick={() => setDialogOpen(true)}
-                >
-                  <LoginRoundedIcon />
-                </IconButton>
-
-                <Badge
-                  overlap="circular"
-                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                  badgeContent={
-                    <Box
-                      sx={{
-                        backgroundColor: "primary.main",
-                        color: "white",
-                        p: 0.5,
-                        width: 20,
-                        height: 20,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        borderRadius: 1200,
-                        fontSize: 11,
-                      }}
-                    >
-                      11
-                    </Box>
-                  }
-                >
-                  <IconButton
-                    onClick={handleDrawerToggle}
-                    sx={{
-                      backgroundColor: "#f3f5f9",
-                      p: 1.3,
-                    }}
-                  >
-                    <ShoppingBagOutlinedIcon />
-                  </IconButton>
-                </Badge>
-              </Stack>
+              <RightOptions />
             </Toolbar>
 
             <Stack
@@ -165,7 +101,6 @@ export default function Header({ handleDrawerToggle }: Props) {
                   color="inherit"
                   aria-label="open drawer"
                   edge="start"
-                  onClick={handleDrawerToggle}
                   sx={{ mr: 2, display: { sm: "none" } }}
                 >
                   <MenuIcon />
@@ -196,60 +131,12 @@ export default function Header({ handleDrawerToggle }: Props) {
 
                 {/* Flex Grow of 1 on paper is making it full width  */}
                 <SearchField />
-
-                <Stack direction="row" spacing={3}>
-                  <IconButton
-                    LinkComponent={Link}
-                    href={"/profile"}
-                    sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}
-                  >
-                    <PersonOutlineOutlinedIcon />
-                  </IconButton>
-
-                  <Badge
-                    overlap="circular"
-                    anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                    badgeContent={
-                      <Box
-                        sx={{
-                          backgroundColor: "primary.main",
-                          color: "white",
-                          p: 0.5,
-                          width: 20,
-                          height: 20,
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          borderRadius: 1200,
-                          fontSize: 11,
-                        }}
-                      >
-                        11
-                      </Box>
-                    }
-                  >
-                    <IconButton
-                      sx={{
-                        backgroundColor: "#f3f5f9",
-                        p: 1.3,
-                      }}
-                    >
-                      <ShoppingBagOutlinedIcon />
-                    </IconButton>
-                  </Badge>
-                </Stack>
+                <RightOptions />
               </Toolbar>
             </Box>
           </Container>
         </AppBar>
       </HideOnScroll>
-
-      <DynamicDialog
-        open={dialogOpen}
-        content={<SignIn handleDialogClose={handleDialogClose} />}
-        isAction={false}
-        handleClose={handleDialogClose}
-      />
     </>
   );
 }
