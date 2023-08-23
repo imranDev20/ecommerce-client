@@ -18,7 +18,6 @@ import { PersonOutline } from "@mui/icons-material";
 import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import dayjs, { Dayjs } from "dayjs";
-import { useRouter } from "next/router";
 import withAuth from "@/shared/components/hocs/withAuth";
 import { useGetLoggedInUserQuery } from "@/shared/redux/api/usersApiSlice";
 import { useEffect } from "react";

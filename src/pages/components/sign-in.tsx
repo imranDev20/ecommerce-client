@@ -1,18 +1,20 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import {
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  Grid,
+  TextField,
+  Typography,
+  Link as MuiLink,
+} from "@mui/material";
+import { LockOutlined } from "@mui/icons-material";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "@/shared/configs/auth";
 import { Controller, useForm } from "react-hook-form";
+
+import { auth } from "@/shared/configs/auth";
 import { loginUser } from "@/shared/services/users";
 import { setTokenInLocalStorage } from "@/shared/utils/functions";
 
@@ -31,9 +33,9 @@ function Copyright(props: any) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <MuiLink color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{" "}
+      </MuiLink>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -45,7 +47,7 @@ type SignInProps = {
 };
 
 export default function SignIn({ handleDialogClose }: SignInProps) {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<IFormInput>({
     defaultValues: {
       email: "",
       password: "",
@@ -90,7 +92,7 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
+          <LockOutlined />
         </Avatar>
         <Typography component="h1" variant="h5" sx={{ color: "text.primary" }}>
           Sign in
@@ -159,14 +161,14 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <MuiLink href="#" variant="body2">
                 Forgot password?
-              </Link>
+              </MuiLink>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <MuiLink href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Link>
+              </MuiLink>
             </Grid>
           </Grid>
         </Box>
