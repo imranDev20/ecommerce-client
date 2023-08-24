@@ -4,9 +4,9 @@ import PaymentMethodCards from "./components/payment-method-cards";
 import { Box, Button, Pagination } from "@mui/material";
 import Link from "next/link";
 import ProfileHeader from "../components/profile-header";
+import withAuth from "@/shared/components/hocs/withAuth";
 
-type Props = {};
-export default function PaymentMethodPage({}: Props) {
+function PaymentMethodPage() {
   const [page, setPage] = useState(1);
   const handleChange = (event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -43,3 +43,5 @@ export default function PaymentMethodPage({}: Props) {
     </ProfileLayout>
   );
 }
+
+export default withAuth(PaymentMethodPage);

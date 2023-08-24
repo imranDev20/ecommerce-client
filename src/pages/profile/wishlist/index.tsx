@@ -1,9 +1,10 @@
 import ProfileLayout from "../components/layout";
 import ProductCard from "@/pages/products/components/product-card";
+import withAuth from "@/shared/components/hocs/withAuth";
 import { useGetAggregatedLoggedInUserQuery } from "@/shared/redux/api/endpoints/users";
 import { Grid } from "@mui/material";
 
-export default function WishListPage() {
+function WishListPage() {
   const { data: user } = useGetAggregatedLoggedInUserQuery({
     aggregate: "wishlist",
   });
@@ -25,3 +26,5 @@ export default function WishListPage() {
     </ProfileLayout>
   );
 }
+
+export default withAuth(WishListPage);

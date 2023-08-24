@@ -1,9 +1,10 @@
+import React from "react";
+import { LinkProps as MuiLinkProps } from "@mui/material";
 import { AppProps } from "next/app";
 import { EmotionCache } from "@emotion/react";
 import { SvgIconComponent } from "@mui/icons-material";
 import { Category } from "./product";
 import { Brand } from "./brand";
-import React from "react";
 
 export type ChildrenNode = {
   children: React.ReactNode;
@@ -17,7 +18,7 @@ export type CacheAppProps = AppProps & {
   emotionCache?: EmotionCache;
 };
 
-export type NextLinkProps = {
+export type NextLinkProps = MuiLinkProps & {
   children: React.ReactNode;
   href: string;
 };

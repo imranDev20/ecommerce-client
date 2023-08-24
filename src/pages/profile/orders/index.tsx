@@ -12,6 +12,7 @@ import ProfileLayout from "../components/layout";
 import { ChangeEvent, useState } from "react";
 import ProfileHeader from "../components/profile-header";
 import Link from "next/link";
+import withAuth from "@/shared/components/hocs/withAuth";
 
 const orders = [
   {
@@ -45,7 +46,7 @@ const orders = [
   },
 ];
 
-export default function OrdersPage() {
+function OrdersPage() {
   const [page, setPage] = useState(1);
   const handleChange = (event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -269,3 +270,5 @@ export default function OrdersPage() {
     </ProfileLayout>
   );
 }
+
+export default withAuth(OrdersPage);

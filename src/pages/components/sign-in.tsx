@@ -13,12 +13,15 @@ import {
 import { LockOutlined } from "@mui/icons-material";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Controller, useForm } from "react-hook-form";
+import LoginIcon from "@mui/icons-material/Login";
 
 import { auth } from "@/shared/configs/auth";
 import { loginUser } from "@/shared/services/users";
 import { setToken } from "@/shared/utils/functions";
 import { api } from "@/shared/redux/api/apiSlice";
 import { useAppDispatch } from "@/shared/redux/hooks";
+import { LoadingButton } from "@mui/lab";
+import NextLink from "@/shared/components/next-link";
 
 interface IFormInput {
   email: string;
@@ -36,10 +39,9 @@ function Copyright(props: any) {
     >
       {"Copyright © "}
       <MuiLink color="inherit" href="https://mui.com/">
-        Your Website
+        E-Commerce
       </MuiLink>{" "}
       {new Date().getFullYear()}
-      {"."}
     </Typography>
   );
 }
@@ -77,7 +79,6 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
       if (!userResponse) {
         throw Error("User not found in database.");
       }
-
       setToken(userResponse.accessToken);
       dispatch(api.util.resetApiState());
 
@@ -157,14 +158,17 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
             control={control}
           />
 
-          <Button
+          <LoadingButton
             type="submit"
+            loading={loading}
             fullWidth
             variant="contained"
+            loadingPosition="end"
+            endIcon={<LoginIcon />}
             sx={{ mt: 3, mb: 2 }}
           >
             Sign In
-          </Button>
+          </LoadingButton>
           <Grid container>
             <Grid item xs>
               <MuiLink href="#" variant="body2">
@@ -172,9 +176,9 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
               </MuiLink>
             </Grid>
             <Grid item>
-              <MuiLink href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </MuiLink>
+              <NextLink href="/signup" variant="body2">
+                Don&apos;t have an account? Sign Up
+              </NextLink>
             </Grid>
           </Grid>
         </Box>

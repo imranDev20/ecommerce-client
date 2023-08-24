@@ -1,6 +1,7 @@
+import withAuth from "@/shared/components/hocs/withAuth";
 import ProfileLayout from "../components/layout";
 
-type Props = {};
-export default function SingleOrderPage({}: Props) {
+function SingleOrderPage() {
   return <ProfileLayout>SingleOrderPage</ProfileLayout>;
 }
+export default withAuth(SingleOrderPage);

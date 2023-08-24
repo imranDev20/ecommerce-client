@@ -21,6 +21,7 @@ import { NextLinkProps } from "../types/global";
 export default function NextLink({
   children,
   href,
+  ...props
 }: NextLinkProps): JSX.Element {
   return (
     <MuiLink
@@ -30,6 +31,7 @@ export default function NextLink({
       component={Link}
       underline="none"
       href={href}
+      {...props}
     >
       {children}
     </MuiLink>

@@ -29,6 +29,8 @@ const usersApi = api.injectEndpoints({
       providesTags: ["UsersWishlist"],
       transformResponse: (response: AggregatedUserApiResponse) => response.data,
     }),
+
+    // setLoggedInUser :
   }),
   overrideExisting: false,
 });
