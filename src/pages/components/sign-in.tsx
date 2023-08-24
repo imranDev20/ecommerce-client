@@ -20,6 +20,7 @@ import { api } from "@/shared/redux/api/apiSlice";
 import { useAppDispatch } from "@/shared/redux/hooks";
 import { LoadingButton } from "@mui/lab";
 import NextLink from "@/shared/components/next-link";
+import Router from "next/router";
 
 interface IFormInput {
   email: string;
@@ -46,9 +47,13 @@ function Copyright(props: any) {
 
 type SignInProps = {
   handleDialogClose?: () => void;
+  isInsideDialog?: boolean;
 };
 
-export default function SignIn({ handleDialogClose }: SignInProps) {
+export default function SignIn({
+  handleDialogClose,
+  isInsideDialog,
+}: SignInProps) {
   const dispatch = useAppDispatch();
   const {
     control,
@@ -84,6 +89,7 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
       dispatch(api.util.resetApiState());
 
       handleDialogClose && handleDialogClose();
+      !isInsideDialog && Router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -140,7 +146,6 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
                 label="Password"
                 type="password"
                 id="password"
-                // autoComplete="current-password"
               />
             )}
           />

@@ -1,7 +1,7 @@
 import { debounce } from "@/shared/utils/functions";
 import { Search } from "@mui/icons-material";
 import { Box, Button, InputBase, Paper } from "@mui/material";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import Router from "next/router";
 
 export default function SearchField() {
@@ -11,14 +11,14 @@ export default function SearchField() {
     console.log("Searching for:", searchTerm);
   }, 500);
 
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     Router.push(
       {
         pathname: "/products",
         query: {
-          search: term,
+          ...(term !== "" && { search: term }),
         },
       },
       undefined,
@@ -33,7 +33,6 @@ export default function SearchField() {
       elevation={0}
       component="form"
       sx={{
-        // p: "2px 4px",
         display: "flex",
         alignItems: "center",
         border: "2px solid rgb(227, 233, 239)",
@@ -72,9 +71,9 @@ export default function SearchField() {
 
       <Button
         disableElevation
+        type="submit"
         variant="contained"
         sx={{ height: "100%", borderRadius: 0, width: 130 }}
-        onClick={handleSearch}
       >
         Search
       </Button>

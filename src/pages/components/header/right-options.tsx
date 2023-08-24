@@ -195,12 +195,24 @@ export default function RightOptions() {
             </MenuItem>
           </NextLink>
 
-          <ListItem secondaryAction={<Switch edge="end" />} disablePadding>
-            <ListItemButton>
+          <ListItem
+            dense
+            secondaryAction={<Switch edge="end" />}
+            disablePadding
+          >
+            <ListItemButton
+              sx={{
+                py: 0.25,
+              }}
+            >
               <ListItemIcon sx={{ minWidth: 36 }}>
                 <DarkMode fontSize="small" />
               </ListItemIcon>
-              <ListItemText primary="Appearance" />
+              <ListItemText
+                primary={
+                  <Typography sx={{ fontSize: "1rem" }}>Appearance</Typography>
+                }
+              />
             </ListItemButton>
           </ListItem>
 
@@ -230,7 +242,7 @@ export default function RightOptions() {
               marginTop: 4,
             }}
           >
-            <SignIn handleDialogClose={handleDialogClose} />
+            <SignIn handleDialogClose={handleDialogClose} isInsideDialog />
           </Container>
         }
         isAction={false}
