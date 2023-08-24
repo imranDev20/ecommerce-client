@@ -4,7 +4,7 @@ import ProfileLayout from "./components/layout";
 import ProfileHeader from "./components/profile-header";
 import dayjs from "dayjs";
 import withAuth from "@/shared/components/hocs/withAuth";
-import { useGetLoggedInUserQuery } from "@/shared/redux/api/usersApiSlice";
+import { useGetLoggedInUserQuery } from "@/shared/redux/api/endpoints/users";
 
 function ProfilePage() {
   const { data: user } = useGetLoggedInUserQuery();

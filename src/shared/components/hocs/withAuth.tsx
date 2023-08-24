@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Router from "next/router";
-import { useGetLoggedInUserQuery } from "@/shared/redux/api/usersApiSlice";
+import { useGetLoggedInUserQuery } from "@/shared/redux/api/endpoints/users";
 
 type ComponentType = React.ComponentType<any>;
 

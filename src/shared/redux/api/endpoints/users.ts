@@ -1,6 +1,5 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import apiBaseQuery from "./apiBaseQuery";
 import { User, UserWithWishlist } from "@/shared/types/user";
+import { api } from "../apiSlice";
 
 type UserApiResponse = {
   success: boolean;
@@ -12,15 +11,13 @@ type AggregatedUserApiResponse = {
   data: UserWithWishlist;
 };
 
-export const usersApiSlice = createApi({
-  reducerPath: "users",
-  baseQuery: apiBaseQuery,
+const usersApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getLoggedInUser: builder.query<User, void>({
       query: () => "/users/me",
       transformResponse: (response: UserApiResponse) => response.data,
+      providesTags: ["Users"],
     }),
-
     getAggregatedLoggedInUser: builder.query<
       UserWithWishlist,
       { aggregate: string }
@@ -29,10 +26,12 @@ export const usersApiSlice = createApi({
         url: "/users/me",
         params: { aggregate },
       }),
+      providesTags: ["UsersWishlist"],
       transformResponse: (response: AggregatedUserApiResponse) => response.data,
     }),
   }),
+  overrideExisting: false,
 });
 
 export const { useGetLoggedInUserQuery, useGetAggregatedLoggedInUserQuery } =
-  usersApiSlice;
+  usersApi;

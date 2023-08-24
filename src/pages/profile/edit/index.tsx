@@ -19,7 +19,7 @@ import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import dayjs, { Dayjs } from "dayjs";
 import withAuth from "@/shared/components/hocs/withAuth";
-import { useGetLoggedInUserQuery } from "@/shared/redux/api/usersApiSlice";
+import { useGetLoggedInUserQuery } from "@/shared/redux/api/endpoints/users";
 import { useEffect } from "react";
 
 interface IFormInput {

@@ -1,8 +1,5 @@
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import { useState } from "react";
 import {
@@ -21,25 +18,27 @@ import {
   Switch,
   Typography,
 } from "@mui/material";
-import DynamicDialog from "@/shared/components/dynamic-dialog";
+import { useSignOut } from "react-firebase-hooks/auth";
+import { DarkMode, Favorite, Logout, Person } from "@mui/icons-material";
 import Link from "next/link";
+import DynamicDialog from "@/shared/components/dynamic-dialog";
 import SignIn from "../sign-in";
 import DynamicDrawer from "@/shared/components/dynamic-drawer";
 import Cart from "../cart";
-import { useGetLoggedInUserQuery } from "@/shared/redux/api/usersApiSlice";
-import {
-  DarkMode,
-  Favorite,
-  LightMode,
-  Logout,
-  Person,
-} from "@mui/icons-material";
+import NextLink from "@/shared/components/next-link";
+import { auth } from "@/shared/configs/auth";
+import { removeToken } from "@/shared/utils/functions";
+import { useGetLoggedInUserQuery } from "@/shared/redux/api/endpoints/users";
+import { useAppDispatch } from "@/shared/redux/hooks";
+import { api } from "@/shared/redux/api/apiSlice";
 
-type Props = {};
-export default function RightOptions({}: Props) {
+export default function RightOptions() {
   const [cartDrawerOpen, setCartDrawerOpen] = useState<boolean>(false);
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const dispatch = useAppDispatch();
+
+  const [signOut] = useSignOut(auth);
 
   const { data: user, isLoading } = useGetLoggedInUserQuery();
 
@@ -48,7 +47,7 @@ export default function RightOptions({}: Props) {
   const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleMenuClose = () => {
     setAnchorEl(null);
   };
 
@@ -58,6 +57,16 @@ export default function RightOptions({}: Props) {
 
   const handleDialogClose = () => {
     setDialogOpen(false);
+  };
+
+  const handleLogout = async () => {
+    const success = await signOut();
+
+    if (success) {
+      dispatch(api.util.resetApiState());
+      removeToken();
+      handleMenuClose();
+    }
   };
   return (
     <>
@@ -71,7 +80,7 @@ export default function RightOptions({}: Props) {
           </IconButton>
         )}
 
-        {!user && isLoading && (
+        {(!user || isLoading) && (
           <IconButton
             LinkComponent={Link}
             sx={{ backgroundColor: "#F3F5F9", p: 1.3 }}
@@ -115,87 +124,93 @@ export default function RightOptions({}: Props) {
         </Badge>
       </Stack>
 
-      <Menu
-        anchorEl={anchorEl}
-        id="account-menu"
-        open={menuOpen}
-        onClose={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: "visible",
-            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-            mt: 1.5,
+      {user && !isLoading && (
+        <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={menuOpen}
+          onClose={handleMenuClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              mt: 1.5,
 
-            "&:before": {
-              content: '""',
-              display: "block",
-              position: "absolute",
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: "background.paper",
-              transform: "translateY(-50%) rotate(45deg)",
-              zIndex: 0,
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
             },
-          },
-        }}
-        transformOrigin={{ horizontal: "right", vertical: "top" }}
-        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-      >
-        <MenuItem>
-          <Avatar sx={{ width: 45, height: 45, mr: 2 }}>J</Avatar>
-          <Box>
-            <Typography
-              sx={{
-                fontWeight: 500,
-              }}
-            >
-              {user?.firstName} {user?.lastName}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: 14,
-              }}
-              color="text.primary"
-            >
-              {user?.email}
-            </Typography>
-          </Box>
-        </MenuItem>
-        <Divider />
+          }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        >
+          <MenuItem>
+            <Avatar sx={{ width: 45, height: 45, mr: 2 }}>J</Avatar>
+            <Box>
+              <Typography
+                sx={{
+                  fontWeight: 500,
+                }}
+              >
+                {user?.firstName} {user?.lastName}
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: 14,
+                }}
+                color="text.primary"
+              >
+                {user?.email}
+              </Typography>
+            </Box>
+          </MenuItem>
+          <Divider />
 
-        <MenuItem>
-          <ListItemIcon>
-            <Person fontSize="small" />
-          </ListItemIcon>
-          Profile
-        </MenuItem>
+          <NextLink href="/profile">
+            <MenuItem onClick={handleMenuClose}>
+              <ListItemIcon>
+                <Person fontSize="small" />
+              </ListItemIcon>
+              Profile
+            </MenuItem>
+          </NextLink>
 
-        <MenuItem>
-          <ListItemIcon>
-            <Favorite fontSize="small" />
-          </ListItemIcon>
-          Wish List
-        </MenuItem>
+          <NextLink href="/profile/wishlist">
+            <MenuItem onClick={handleMenuClose}>
+              <ListItemIcon>
+                <Favorite fontSize="small" />
+              </ListItemIcon>
+              Wish List
+            </MenuItem>
+          </NextLink>
 
-        <ListItem secondaryAction={<Switch edge="end" />} disablePadding>
-          <ListItemButton>
-            <ListItemIcon sx={{ minWidth: 36 }}>
-              <DarkMode fontSize="small" />
+          <ListItem secondaryAction={<Switch edge="end" />} disablePadding>
+            <ListItemButton>
+              <ListItemIcon sx={{ minWidth: 36 }}>
+                <DarkMode fontSize="small" />
+              </ListItemIcon>
+              <ListItemText primary="Appearance" />
+            </ListItemButton>
+          </ListItem>
+
+          <MenuItem onClick={handleLogout}>
+            <ListItemIcon>
+              <Logout fontSize="small" />
             </ListItemIcon>
-            <ListItemText primary="Appearance" />
-          </ListItemButton>
-        </ListItem>
-
-        <MenuItem>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
-      </Menu>
+            Logout
+          </MenuItem>
+        </Menu>
+      )}
 
       <DynamicDrawer
         anchor="right"

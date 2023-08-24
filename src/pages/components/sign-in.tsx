@@ -16,7 +16,9 @@ import { Controller, useForm } from "react-hook-form";
 
 import { auth } from "@/shared/configs/auth";
 import { loginUser } from "@/shared/services/users";
-import { setTokenInLocalStorage } from "@/shared/utils/functions";
+import { setToken } from "@/shared/utils/functions";
+import { api } from "@/shared/redux/api/apiSlice";
+import { useAppDispatch } from "@/shared/redux/hooks";
 
 interface IFormInput {
   email: string;
@@ -57,6 +59,8 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
   const [signInWithEmailAndPassword, , loading, error] =
     useSignInWithEmailAndPassword(auth);
 
+  const dispatch = useAppDispatch();
+
   const onSubmit = async (data: IFormInput) => {
     try {
       const email = data.email;
@@ -74,7 +78,9 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
         throw Error("User not found in database.");
       }
 
-      setTokenInLocalStorage(userResponse.accessToken);
+      setToken(userResponse.accessToken);
+      dispatch(api.util.resetApiState());
+
       handleDialogClose();
     } catch (error) {
       console.log(error);

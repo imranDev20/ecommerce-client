@@ -1,6 +1,6 @@
 import ProfileLayout from "../components/layout";
 import ProductCard from "@/pages/products/components/product-card";
-import { useGetAggregatedLoggedInUserQuery } from "@/shared/redux/api/usersApiSlice";
+import { useGetAggregatedLoggedInUserQuery } from "@/shared/redux/api/endpoints/users";
 import { Grid } from "@mui/material";
 
 export default function WishListPage() {

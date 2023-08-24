@@ -11,11 +11,15 @@ export const slugifyTitle = (title: string): string => {
   });
 };
 
-export function setTokenInLocalStorage(token: string) {
+export function setToken(token: string) {
   localStorage.setItem("accessToken", token);
 }
 
-export function getTokenFromLocalStorage() {
+export function getToken() {
   const token = localStorage.getItem("accessToken");
   return token;
+}
+
+export function removeToken() {
+  localStorage.removeItem("accessToken");
 }
