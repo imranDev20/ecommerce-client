@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Card, CardActions } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import NextLink from "@/shared/components/next-link";
 import { LoadingButton } from "@mui/lab";
@@ -83,12 +83,12 @@ export default function SignUpPage() {
     <Container component="main" maxWidth="sm">
       <Card
         sx={{
-          px: 5,
+          px: 4,
           py: 3,
           my: 3,
         }}
       >
-        <CardActions
+        <CardContent
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -272,7 +272,7 @@ export default function SignUpPage() {
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <NextLink
-                    href="#"
+                    href="/signin"
                     sx={{
                       fontSize: 14,
                       textDecoration: "underline",
@@ -285,7 +285,7 @@ export default function SignUpPage() {
             </Box>
           </Box>
           <Copyright sx={{ mt: 5 }} />
-        </CardActions>
+        </CardContent>
       </Card>
     </Container>
   );

@@ -6,6 +6,7 @@ import {
   Avatar,
   Badge,
   Box,
+  Container,
   Divider,
   IconButton,
   ListItem,
@@ -222,7 +223,16 @@ export default function RightOptions() {
 
       <DynamicDialog
         open={dialogOpen}
-        content={<SignIn handleDialogClose={handleDialogClose} />}
+        content={
+          <Container
+            maxWidth="xs"
+            sx={{
+              marginTop: 4,
+            }}
+          >
+            <SignIn handleDialogClose={handleDialogClose} />
+          </Container>
+        }
         isAction={false}
         handleClose={handleDialogClose}
       />

@@ -1,8 +1,33 @@
+import { debounce } from "@/shared/utils/functions";
 import { Search } from "@mui/icons-material";
 import { Box, Button, InputBase, Paper } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import Router from "next/router";
 
 export default function SearchField() {
+  const [term, setTerm] = useState<string>("");
+
+  const delayedSearch = debounce((searchTerm) => {
+    console.log("Searching for:", searchTerm);
+  }, 500);
+
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+
+    Router.push(
+      {
+        pathname: "/products",
+        query: {
+          search: term,
+        },
+      },
+      undefined,
+      {
+        shallow: false,
+      }
+    );
+  };
+
   return (
     <Paper
       elevation={0}
@@ -21,6 +46,7 @@ export default function SearchField() {
           borderColor: "primary.main",
         },
       }}
+      onSubmit={handleSearch}
     >
       <Box
         sx={{
@@ -36,13 +62,19 @@ export default function SearchField() {
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search any product..."
+        defaultValue=""
         inputProps={{ "aria-label": "search google maps" }}
+        onChange={(e) => {
+          setTerm(e.target.value);
+          delayedSearch(e.target.value);
+        }}
       />
 
       <Button
         disableElevation
         variant="contained"
         sx={{ height: "100%", borderRadius: 0, width: 130 }}
+        onClick={handleSearch}
       >
         Search
       </Button>

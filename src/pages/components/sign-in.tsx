@@ -1,9 +1,7 @@
 import {
   Avatar,
   Box,
-  Button,
   Checkbox,
-  Container,
   FormControlLabel,
   Grid,
   TextField,
@@ -47,21 +45,24 @@ function Copyright(props: any) {
 }
 
 type SignInProps = {
-  handleDialogClose: () => void;
+  handleDialogClose?: () => void;
 };
 
 export default function SignIn({ handleDialogClose }: SignInProps) {
-  const { control, handleSubmit } = useForm<IFormInput>({
+  const dispatch = useAppDispatch();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>({
     defaultValues: {
       email: "",
       password: "",
       remember: false,
     },
   });
-  const [signInWithEmailAndPassword, , loading, error] =
+  const [signInWithEmailAndPassword, , loading, firebaseError] =
     useSignInWithEmailAndPassword(auth);
-
-  const dispatch = useAppDispatch();
 
   const onSubmit = async (data: IFormInput) => {
     try {
@@ -82,17 +83,16 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
       setToken(userResponse.accessToken);
       dispatch(api.util.resetApiState());
 
-      handleDialogClose();
+      handleDialogClose && handleDialogClose();
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <>
       <Box
         sx={{
-          marginTop: 4,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -196,11 +196,6 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
         </Box>
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />
-    </Container>
+    </>
   );
 }
-
-// if (!termsAndConditions) {
-//   throw Error("You have to agree to our terms & conditions.");
-
-// }
