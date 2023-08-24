@@ -1,4 +1,3 @@
-import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -9,12 +8,21 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Card, CardContent } from "@mui/material";
+import { Card, CardContent, FormHelperText } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import NextLink from "@/shared/components/next-link";
 import { LoadingButton } from "@mui/lab";
 import { PersonAdd } from "@mui/icons-material";
 import HookFormError from "@/shared/components/hook-form-error";
+import { useAddNewUserMutation } from "@/shared/redux/api/endpoints/users";
+import { useApiError } from "@/shared/hooks/useApiError";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "@/shared/configs/auth";
+import { useEffect } from "react";
+import Router from "next/router";
+import { setToken } from "@/shared/utils/functions";
+import { api } from "@/shared/redux/api/apiSlice";
+import { useAppDispatch } from "@/shared/redux/hooks";
 
 function Copyright(props: any) {
   return (
@@ -43,9 +51,11 @@ type FormInput = {
 };
 
 export default function SignUpPage() {
+  const dispatch = useAppDispatch();
   const {
     control,
     handleSubmit,
+    reset,
     watch,
     formState: { errors },
   } = useForm<FormInput>({
@@ -59,25 +69,46 @@ export default function SignUpPage() {
     },
   });
 
-  const onSubmit = async (data: FormInput) => {
-    try {
-      const firstName = data.firstName;
-      const lastName = data.lastName;
-      const email = data.email;
-      const password = data.password;
+  const [createUser, { isLoading, data: userData, error, isSuccess }] =
+    useAddNewUserMutation();
+  const errorMessage = useApiError(error);
 
+  const [
+    createUserWithEmailAndPassword,
+    firebaseUser,
+    firebaseLoading,
+    firebaseError,
+  ] = useCreateUserWithEmailAndPassword(auth);
+
+  const onSubmit = async (data: FormInput) => {
+    const firstName = data.firstName;
+    const lastName = data.lastName;
+    const email = data.email;
+    const password = data.password;
+
+    const firebaseResponse = await createUserWithEmailAndPassword(
+      email,
+      password
+    );
+
+    if (firebaseResponse?.user) {
       const user = {
         firstName,
         lastName,
-        email,
-        password,
+        email: firebaseResponse.user.email as string,
       };
-
-      console.log(user);
-    } catch (error) {
-      console.log(error);
+      await createUser(user);
+      reset();
     }
   };
+
+  useEffect(() => {
+    if (isSuccess && firebaseUser) {
+      setToken(userData?.accessToken as string);
+      dispatch(api.util.resetApiState());
+      Router.push("/");
+    }
+  }, [isSuccess, firebaseUser, userData?.accessToken, dispatch]);
 
   return (
     <Container component="main" maxWidth="sm">
@@ -261,6 +292,7 @@ export default function SignUpPage() {
               </Grid>
               <LoadingButton
                 type="submit"
+                loading={isLoading || firebaseLoading}
                 loadingPosition="start"
                 startIcon={<PersonAdd />}
                 fullWidth
@@ -269,6 +301,10 @@ export default function SignUpPage() {
               >
                 Sign Up
               </LoadingButton>
+
+              <FormHelperText error>{errorMessage}</FormHelperText>
+              <FormHelperText error>{firebaseError?.message}</FormHelperText>
+
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <NextLink

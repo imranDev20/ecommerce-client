@@ -11,6 +11,11 @@ type AggregatedUserApiResponse = {
   data: UserWithWishlist;
 };
 
+type CreateUserResponse = UserApiResponse & {
+  accessToken: string;
+  message: string;
+};
+
 const usersApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getLoggedInUser: builder.query<User, void>({
@@ -30,10 +35,22 @@ const usersApi = api.injectEndpoints({
       transformResponse: (response: AggregatedUserApiResponse) => response.data,
     }),
 
+    addNewUser: builder.mutation<CreateUserResponse, Partial<User>>({
+      query: (data) => ({
+        url: "/users",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Users", "UsersWishlist"],
+    }),
+
     // setLoggedInUser :
   }),
   overrideExisting: false,
 });
 
-export const { useGetLoggedInUserQuery, useGetAggregatedLoggedInUserQuery } =
-  usersApi;
+export const {
+  useGetLoggedInUserQuery,
+  useGetAggregatedLoggedInUserQuery,
+  useAddNewUserMutation,
+} = usersApi;
