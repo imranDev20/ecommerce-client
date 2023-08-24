@@ -123,7 +123,6 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
                 type="email"
                 id="email"
                 label="Email Address"
-                // autoComplete="email"
                 autoFocus
               />
             )}
@@ -163,20 +162,33 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
             loading={loading}
             fullWidth
             variant="contained"
-            loadingPosition="end"
-            endIcon={<LoginIcon />}
+            loadingPosition="start"
+            startIcon={<LoginIcon />}
             sx={{ mt: 3, mb: 2 }}
           >
             Sign In
           </LoadingButton>
           <Grid container>
             <Grid item xs>
-              <MuiLink href="#" variant="body2">
+              <MuiLink
+                href="#"
+                sx={{
+                  fontSize: 14,
+                  textDecoration: "underline",
+                }}
+              >
                 Forgot password?
               </MuiLink>
             </Grid>
             <Grid item>
-              <NextLink href="/signup" variant="body2">
+              <NextLink
+                href="/signup"
+                onClick={handleDialogClose}
+                sx={{
+                  fontSize: 14,
+                  textDecoration: "underline",
+                }}
+              >
                 Don&apos;t have an account? Sign Up
               </NextLink>
             </Grid>
@@ -187,3 +199,8 @@ export default function SignIn({ handleDialogClose }: SignInProps) {
     </Container>
   );
 }
+
+// if (!termsAndConditions) {
+//   throw Error("You have to agree to our terms & conditions.");
+
+// }

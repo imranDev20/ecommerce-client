@@ -29,9 +29,7 @@ export default function RootLayout({ children }: ChildrenNode): JSX.Element {
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
       </Box>
-      <Box component="main" sx={{ height: "1000vh" }}>
-        {children}
-      </Box>
+      <Box component="main">{children}</Box>
     </>
   );
 }
