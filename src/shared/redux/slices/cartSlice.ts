@@ -66,7 +66,9 @@ export const cartSlice = createSlice({
       }
     },
 
-    toggleCartDrawer: (state) => {},
+    toggleCartDrawer: (state) => {
+      state.drawerOpen = !state.drawerOpen;
+    },
   },
 });
 

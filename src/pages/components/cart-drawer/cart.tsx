@@ -13,9 +13,13 @@ import {
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import Product from "./product";
-import { useAppSelector } from "@/shared/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
+import { toggleCartDrawer } from "@/shared/redux/slices/cartSlice";
+import { CartProduct } from "@/shared/types/product";
+import Link from "next/link";
 
 export default function Cart() {
+  const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.cart.cartItems);
 
   return (
@@ -29,7 +33,7 @@ export default function Cart() {
       <List>
         <ListItem
           secondaryAction={
-            <IconButton aria-label="comment">
+            <IconButton onClick={() => dispatch(toggleCartDrawer())}>
               <CloseIcon />
             </IconButton>
           }
@@ -38,12 +42,14 @@ export default function Cart() {
             <ShoppingBasketOutlinedIcon />
           </ListItemIcon>
           <ListItemText
-            primary={<Typography fontWeight={600}>3 Items</Typography>}
+            primary={
+              <Typography fontWeight={600}>{cartItems.length} Items</Typography>
+            }
           />
         </ListItem>
         <Divider />
 
-        {cartItems.map((item) => (
+        {cartItems.map((item: CartProduct) => (
           <Product key={item._id} product={item} />
         ))}
       </List>
@@ -51,12 +57,20 @@ export default function Cart() {
       <Stack
         sx={{
           px: 3,
-          mt: 3,
+          mt: "auto",
+          pt: 3,
           pb: 3,
         }}
         spacing={1}
       >
-        <Button variant="contained">Checkout Now</Button>
+        <Button
+          variant="contained"
+          LinkComponent={Link}
+          href="/quick-checkout"
+          onClick={() => dispatch(toggleCartDrawer())}
+        >
+          Checkout Now
+        </Button>
         <Button variant="outlined">View Cart</Button>
       </Stack>
     </Box>

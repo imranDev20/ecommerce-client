@@ -8,6 +8,7 @@ import {
   decrementQuantity,
   deleteFromCart,
   incrementQuantity,
+  toggleCartDrawer,
 } from "@/shared/redux/slices/cartSlice";
 
 const ProductCardButtons = ({ product }: WishListCardProps | ProductProps) => {
@@ -22,6 +23,7 @@ const ProductCardButtons = ({ product }: WishListCardProps | ProductProps) => {
       dispatch(incrementQuantity(product));
     } else {
       dispatch(addToCart(product));
+      dispatch(toggleCartDrawer());
     }
   };
 

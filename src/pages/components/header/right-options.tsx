@@ -32,9 +32,11 @@ import { calculateTotal, removeToken } from "@/shared/utils/functions";
 import { useGetLoggedInUserQuery } from "@/shared/redux/api/endpoints/users";
 import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
 import { api } from "@/shared/redux/api/apiSlice";
+import { toggleCartDrawer } from "@/shared/redux/slices/cartSlice";
+import { CartProduct } from "@/shared/types/product";
 
 export default function RightOptions() {
-  const [cartDrawerOpen, setCartDrawerOpen] = useState<boolean>(false);
+  const cartDrawerOpen = useAppSelector((state) => state.cart.drawerOpen);
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const dispatch = useAppDispatch();
@@ -53,7 +55,7 @@ export default function RightOptions() {
   };
 
   const handleDrawerToggle = () => {
-    setCartDrawerOpen(!cartDrawerOpen);
+    dispatch(toggleCartDrawer());
   };
 
   const handleDialogClose = () => {
@@ -109,7 +111,9 @@ export default function RightOptions() {
                 fontSize: 11,
               }}
             >
-              {calculateTotal(cartItems.map((item) => item.quantity))}
+              {calculateTotal(
+                cartItems.map((item: CartProduct) => item.quantity)
+              )}
             </Box>
           }
         >
@@ -228,7 +232,7 @@ export default function RightOptions() {
       <DynamicDrawer
         drawerWidth={370}
         anchor="right"
-        mobileOpen={cartDrawerOpen}
+        drawerOpen={cartDrawerOpen}
         handleDrawerToggle={handleDrawerToggle}
       >
         <Cart />

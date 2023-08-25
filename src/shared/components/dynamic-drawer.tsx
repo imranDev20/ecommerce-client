@@ -4,7 +4,7 @@ import { DRAWER_WIDTH } from "../configs/constants";
 
 export default function DynamicDrawer({
   anchor,
-  mobileOpen,
+  drawerOpen,
   handleDrawerToggle,
   children,
   drawerWidth,
@@ -13,7 +13,7 @@ export default function DynamicDrawer({
     <Drawer
       variant="temporary"
       anchor={anchor}
-      open={mobileOpen}
+      open={drawerOpen}
       onClose={handleDrawerToggle}
       ModalProps={{
         keepMounted: true, // Better open performance on mobile.

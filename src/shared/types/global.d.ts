@@ -31,7 +31,7 @@ export type ProfileHeaderProps = {
 
 export type DynamicDrawerProps = {
   anchor: "left" | "top" | "right" | "bottom";
-  mobileOpen: boolean;
+  drawerOpen: boolean;
   handleDrawerToggle: () => void;
   children: React.ReactElement;
   drawerWidth?: number;
