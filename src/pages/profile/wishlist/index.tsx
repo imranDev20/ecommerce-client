@@ -11,8 +11,6 @@ function WishListPage() {
 
   const products = user?.wishlistProducts;
 
-  console.log(products);
-
   return (
     <ProfileLayout>
       <Grid container spacing={3}>

@@ -7,6 +7,7 @@ export default function DynamicDrawer({
   mobileOpen,
   handleDrawerToggle,
   children,
+  drawerWidth,
 }: DynamicDrawerProps) {
   return (
     <Drawer
@@ -18,9 +19,11 @@ export default function DynamicDrawer({
         keepMounted: true, // Better open performance on mobile.
       }}
       sx={{
+        height: "100%",
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
-          width: DRAWER_WIDTH,
+          width: drawerWidth ? drawerWidth : DRAWER_WIDTH,
+          height: "100%",
         },
       }}
     >

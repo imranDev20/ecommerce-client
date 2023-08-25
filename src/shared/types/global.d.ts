@@ -34,6 +34,7 @@ export type DynamicDrawerProps = {
   mobileOpen: boolean;
   handleDrawerToggle: () => void;
   children: React.ReactElement;
+  drawerWidth?: number;
 };
 
 export type ProductsSidebarProps = {

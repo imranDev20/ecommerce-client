@@ -78,3 +78,13 @@ export type WishlistProduct = {
 export type WishListCardProps = {
   product: WishlistProduct;
 };
+
+export type CartProduct = (Product | WishlistProduct) & {
+  quantity: number;
+};
+
+export type CartPayload = Product | WishlistProduct;
+
+export type CartProductProps = {
+  product: CartProduct;
+};

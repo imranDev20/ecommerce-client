@@ -1,8 +1,8 @@
-import { Product } from "@/shared/types/product";
+import { CartPayload, CartProduct } from "@/shared/types/product";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type CartStateType = {
-  cartItems: Product[];
+  cartItems: CartProduct[];
   drawerOpen: boolean;
 };
 
@@ -16,11 +16,55 @@ export const cartSlice = createSlice({
   initialState,
 
   reducers: {
-    addToCart: (state, action: PayloadAction<Product>) => {},
+    addToCart: (state, action: PayloadAction<CartPayload>) => {
+      const itemToAdd = action.payload;
+      const existingItem = state.cartItems.find(
+        (item) => item._id === itemToAdd._id
+      );
 
-    updateItemQuantity: (state, action: PayloadAction<Product>) => {},
+      if (!existingItem?._id) {
+        state.cartItems.push({
+          ...action.payload,
+          quantity: 1,
+        });
+      }
+    },
 
-    deleteFromCart: (state, action: PayloadAction<string>) => {},
+    incrementQuantity: (state, action: PayloadAction<CartPayload>) => {
+      const itemToUpdate = action.payload;
+      const existingItem = state.cartItems.find(
+        (item) => item._id === itemToUpdate._id
+      );
+
+      if (existingItem?._id) {
+        existingItem.quantity += 1;
+      }
+    },
+
+    decrementQuantity: (state, action: PayloadAction<CartPayload>) => {
+      const itemToUpdate = action.payload;
+      const existingItem = state.cartItems.find(
+        (item) => item._id === itemToUpdate._id
+      );
+
+      if (existingItem?._id && existingItem.quantity > 1) {
+        existingItem.quantity -= 1;
+      }
+    },
+
+    deleteFromCart: (state, action: PayloadAction<CartPayload>) => {
+      const itemToDelete = action.payload;
+      const existingItem = state.cartItems.find(
+        (item) => item._id === itemToDelete._id
+      );
+      const existingItemIndex = state.cartItems.findIndex(
+        (item) => item._id === itemToDelete._id
+      );
+
+      if (existingItemIndex !== -1) {
+        state.cartItems.splice(existingItemIndex, 1);
+      }
+    },
 
     toggleCartDrawer: (state) => {},
   },
@@ -29,7 +73,9 @@ export const cartSlice = createSlice({
 export const {
   addToCart,
   deleteFromCart,
-  updateItemQuantity,
+  incrementQuantity,
+  decrementQuantity,
   toggleCartDrawer,
 } = cartSlice.actions;
+
 export default cartSlice.reducer;

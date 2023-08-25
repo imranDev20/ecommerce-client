@@ -3,8 +3,6 @@ import Box from "@mui/material/Box";
 import { ChildrenNode } from "@/shared/types/global";
 import { DRAWER_WIDTH as drawerWidth } from "@/shared/configs/constants";
 import Header from "./header/header";
-import DynamicDrawer from "@/shared/components/dynamic-drawer";
-import Cart from "./cart";
 
 /**
  * The root layout component that wraps the main content of the application.

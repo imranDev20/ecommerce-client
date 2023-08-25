@@ -6,7 +6,9 @@ import Link from "next/link";
 import { NumericFormat } from "react-number-format";
 import ProductCardButtons from "./product-card-buttons";
 
-export default function ProductCard({ product }: WishListCardProps) {
+export default function ProductCard({
+  product,
+}: WishListCardProps | ProductProps) {
   if (product && Object.keys(product).length > 0) {
     const slug = slugifyTitle(product?.name);
 
@@ -15,8 +17,8 @@ export default function ProductCard({ product }: WishListCardProps) {
         <Link href={`/products/${slug}-${product._id}`}>
           <Box sx={{ height: 283, position: "relative" }}>
             <Image
-              src={product.images[0]}
-              alt={product.name}
+              src={product?.images[0] as string}
+              alt={product?.name as string}
               fill
               quality={100}
             />
@@ -44,6 +46,8 @@ export default function ProductCard({ product }: WishListCardProps) {
           sx={{
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "flex-end",
+            height: 121,
           }}
         >
           <Box>

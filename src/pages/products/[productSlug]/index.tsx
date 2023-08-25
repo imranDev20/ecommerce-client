@@ -11,10 +11,10 @@ import {
 } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 import { styled } from "@mui/system";
-import { GetServerSidePropsContext, NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { NumericFormat } from "react-number-format";
+import { useGetProductsQuery } from "@/shared/redux/api/endpoints/products";
 
 const CustomToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   ".MuiToggleButtonGroup-grouped:not(:first-of-type)": {

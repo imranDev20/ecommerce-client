@@ -25,12 +25,12 @@ import Link from "next/link";
 import DynamicDialog from "@/shared/components/dynamic-dialog";
 import SignIn from "../sign-in";
 import DynamicDrawer from "@/shared/components/dynamic-drawer";
-import Cart from "../cart";
+import Cart from "../cart-drawer/cart";
 import NextLink from "@/shared/components/next-link";
 import { auth } from "@/shared/configs/auth";
-import { removeToken } from "@/shared/utils/functions";
+import { calculateTotal, removeToken } from "@/shared/utils/functions";
 import { useGetLoggedInUserQuery } from "@/shared/redux/api/endpoints/users";
-import { useAppDispatch } from "@/shared/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
 import { api } from "@/shared/redux/api/apiSlice";
 
 export default function RightOptions() {
@@ -38,8 +38,8 @@ export default function RightOptions() {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const dispatch = useAppDispatch();
-
   const [signOut] = useSignOut(auth);
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
 
   const { data: user, isLoading } = useGetLoggedInUserQuery();
 
@@ -109,7 +109,7 @@ export default function RightOptions() {
                 fontSize: 11,
               }}
             >
-              11
+              {calculateTotal(cartItems.map((item) => item.quantity))}
             </Box>
           }
         >
@@ -226,6 +226,7 @@ export default function RightOptions() {
       )}
 
       <DynamicDrawer
+        drawerWidth={370}
         anchor="right"
         mobileOpen={cartDrawerOpen}
         handleDrawerToggle={handleDrawerToggle}
