@@ -3,9 +3,9 @@ import YourOrders from "./components/your-orders";
 import PaymentDetails from "./components/payment-details";
 import DeliveryTime from "./components/delivery-time";
 import DeliveryAddress from "./components/delivery-address";
+import withAuth from "@/shared/components/hocs/withAuth";
 
-type Props = {};
-export default function QuickCheckoutPage({}: Props) {
+function QuickCheckoutPage() {
   return (
     <Container maxWidth="lg" sx={{ marginTop: 4, marginBottom: 4 }}>
       <Grid container spacing={4}>
@@ -21,3 +21,4 @@ export default function QuickCheckoutPage({}: Props) {
     </Container>
   );
 }
+export default withAuth(QuickCheckoutPage);

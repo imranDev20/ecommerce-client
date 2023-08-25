@@ -20,7 +20,7 @@ import { api } from "@/shared/redux/api/apiSlice";
 import { useAppDispatch } from "@/shared/redux/hooks";
 import { LoadingButton } from "@mui/lab";
 import NextLink from "@/shared/components/next-link";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 
 interface IFormInput {
   email: string;
@@ -68,6 +68,7 @@ export default function SignIn({
   });
   const [signInWithEmailAndPassword, , loading, firebaseError] =
     useSignInWithEmailAndPassword(auth);
+  const router = useRouter();
 
   const onSubmit = async (data: IFormInput) => {
     try {
@@ -89,7 +90,11 @@ export default function SignIn({
       dispatch(api.util.resetApiState());
 
       handleDialogClose && handleDialogClose();
-      !isInsideDialog && Router.push("/");
+
+      if (!isInsideDialog) {
+        const redirectPath = router.query.redirect || "/";
+        router.replace(redirectPath as string);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -15,9 +15,11 @@ export function setToken(token: string) {
   localStorage.setItem("accessToken", token);
 }
 
-export function getToken(): string | null {
-  const token = localStorage.getItem("accessToken");
-  return token;
+export function getToken() {
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("accessToken");
+    return token;
+  }
 }
 
 export function removeToken() {
@@ -38,4 +40,10 @@ export const debounce = (func: (...args: any[]) => void, delay: number) => {
 
 export function calculateTotal(numbers: number[]): number {
   return numbers.reduce((total, num) => total + num, 0);
+}
+
+export function getIdFromSlug(productSlug: string): string {
+  const slugSplitted = productSlug.split("-");
+  const id = slugSplitted[slugSplitted.length - 1];
+  return id;
 }

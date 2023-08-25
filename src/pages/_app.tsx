@@ -8,10 +8,10 @@ import RootLayout from "./components/layout";
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "@/shared/utils/createEmotionCache";
 import { Provider } from "react-redux";
-import { store } from "@/shared/redux/store";
 import NextNProgress from "nextjs-progressbar";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { wrapper } from "@/shared/redux/store";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -33,8 +33,9 @@ const clientSideEmotionCache = createEmotionCache();
  * @returns {JSX.Element} - The rendered root component.
  */
 
-export default function App(props: CacheAppProps): JSX.Element {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+export function App({ Component, ...rest }: CacheAppProps): JSX.Element {
+  const { store, props } = wrapper.useWrappedStore(rest);
+  const { emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
     <CacheProvider value={emotionCache}>
@@ -67,3 +68,5 @@ export default function App(props: CacheAppProps): JSX.Element {
     </CacheProvider>
   );
 }
+
+export default App;
