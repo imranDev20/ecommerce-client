@@ -3,18 +3,11 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type CartStateType = {
   cartItems: Product[];
-  persisted: boolean;
   drawerOpen: boolean;
-};
-
-type UpdateCartQuantityPayload = {
-  id: string;
-  type: "increase" | "decrease";
 };
 
 const initialState: CartStateType = {
   cartItems: [],
-  persisted: false,
   drawerOpen: false,
 };
 

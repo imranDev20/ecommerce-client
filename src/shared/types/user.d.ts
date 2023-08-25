@@ -1,3 +1,4 @@
+import { Dayjs } from "dayjs";
 import { Product, WishlistProduct } from "./product";
 
 type PaymentMethod = {
@@ -23,7 +24,7 @@ export type User = {
   phone: string;
   firstName: string;
   lastName: string;
-  birthDate: string;
+  birthDate: string | null;
   paymentMethods: PaymentMethod[];
   wishlist: string[] | Product[]; // You can replace 'any' with a more specific type if needed
   addresses: Address[];

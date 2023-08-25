@@ -19,19 +19,26 @@ import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import dayjs, { Dayjs } from "dayjs";
 import withAuth from "@/shared/components/hocs/withAuth";
-import { useGetLoggedInUserQuery } from "@/shared/redux/api/endpoints/users";
+import {
+  useGetLoggedInUserQuery,
+  useUpdateUserMutation,
+} from "@/shared/redux/api/endpoints/users";
 import { useEffect } from "react";
+import { useApiError } from "@/shared/hooks/useApiError";
 
 interface IFormInput {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  birthDate: Dayjs;
+  birthDate: Dayjs | null;
 }
 
 function EditProfilePage() {
   const { data: user } = useGetLoggedInUserQuery();
+
+  const [updateUser, { data, isSuccess, error }] = useUpdateUserMutation();
+  const errorMessage = useApiError(error);
 
   const { control, handleSubmit, reset } = useForm<IFormInput>({
     defaultValues: {
@@ -39,20 +46,17 @@ function EditProfilePage() {
       lastName: "",
       email: "",
       phone: "",
-      birthDate: dayjs(user?.birthDate),
+      birthDate: null,
     },
   });
 
   const onSubmit = async (data: IFormInput) => {
     const userData = {
       ...data,
-      birthDate: data.birthDate.format(),
+      birthDate: data.birthDate ? data.birthDate.format() : null,
     };
-    // const response = await updateUser(userId, userData);
 
-    // if (!response?.success) {
-    //   throw Error();
-    // }
+    updateUser(userData);
   };
 
   useEffect(() => {
@@ -62,7 +66,7 @@ function EditProfilePage() {
         lastName: user?.lastName,
         email: user?.email,
         phone: user?.phone,
-        birthDate: dayjs(user?.birthDate),
+        birthDate: !user.birthDate ? null : dayjs(user?.birthDate),
       });
     }
   }, [user, reset]);

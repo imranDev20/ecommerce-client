@@ -23,6 +23,7 @@ const usersApi = api.injectEndpoints({
       transformResponse: (response: UserApiResponse) => response.data,
       providesTags: ["Users"],
     }),
+
     getAggregatedLoggedInUser: builder.query<
       UserWithWishlist,
       { aggregate: string }
@@ -44,6 +45,15 @@ const usersApi = api.injectEndpoints({
       invalidatesTags: ["Users", "UsersWishlist"],
     }),
 
+    updateUser: builder.mutation<Partial<CreateUserResponse>, Partial<User>>({
+      query: (user) => ({
+        url: `/users/${user.email}`,
+        method: "PATCH",
+        body: user,
+      }),
+      invalidatesTags: ["Users", "UsersWishlist"],
+    }),
+
     // setLoggedInUser :
   }),
   overrideExisting: false,
@@ -53,4 +63,5 @@ export const {
   useGetLoggedInUserQuery,
   useGetAggregatedLoggedInUserQuery,
   useAddNewUserMutation,
+  useUpdateUserMutation,
 } = usersApi;

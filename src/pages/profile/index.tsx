@@ -29,12 +29,14 @@ function ProfilePage() {
     {
       id: 4,
       title: "Phone",
-      value: user?.phone,
+      value: user?.phone ? user.phone : "Not Provided",
     },
     {
       id: 5,
       title: "Date of Birth",
-      value: dayjs(user?.birthDate).format("DD MMM YYYY"),
+      value: !user?.birthDate
+        ? "Not Provided"
+        : dayjs(user?.birthDate).format("DD MMM YYYY"),
     },
   ];
 
