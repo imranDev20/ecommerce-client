@@ -42,8 +42,10 @@ export function calculateTotal(numbers: number[]): number {
   return numbers.reduce((total, num) => total + num, 0);
 }
 
-export function getIdFromSlug(productSlug: string): string {
-  const slugSplitted = productSlug.split("-");
-  const id = slugSplitted[slugSplitted.length - 1];
-  return id;
+export function getIdFromSlug(productSlug: string) {
+  if (productSlug) {
+    const slugSplitted = productSlug.split("-");
+    const id = slugSplitted[slugSplitted.length - 1];
+    return id;
+  }
 }

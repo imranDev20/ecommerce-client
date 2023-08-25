@@ -65,11 +65,10 @@ export default function SingleProductPage() {
 
   const result = useGetProductQuery(typeof id === "string" ? id : skipToken, {
     skip: router.isFallback,
+    refetchOnMountOrArgChange: 900,
   });
 
   const { isLoading, error, data: product } = result;
-
-  console.log(product);
 
   return (
     <>
