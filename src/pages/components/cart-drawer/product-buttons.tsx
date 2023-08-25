@@ -46,7 +46,7 @@ export default function ProductButtons({ product }: CartProductProps) {
       >
         <Add sx={{ fontSize: 15, color: "primary.main" }} />
       </IconButton>
-      <Box>{product.quantity}</Box>
+      <Box>{product?.quantity}</Box>
 
       <IconButton
         onClick={handleRemoveFromCart}

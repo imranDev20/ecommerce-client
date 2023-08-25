@@ -112,7 +112,7 @@ export default function RightOptions() {
               }}
             >
               {calculateTotal(
-                cartItems.map((item: CartProduct) => item.quantity)
+                cartItems.map((item: CartProduct) => item?.quantity)
               )}
             </Box>
           }

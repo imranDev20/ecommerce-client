@@ -29,10 +29,10 @@ export default function Product({ product }: CartProductProps) {
       >
         <ProductButtons product={product} />
 
-        <Image src={product.images[0]} alt="Tag" width={100} height={100} />
+        <Image src={product?.images[0]} alt="Tag" width={100} height={100} />
         <Box>
           <ListItemText
-            primary={product.name}
+            primary={product?.name}
             secondaryTypographyProps={{
               fontSize: 12,
               my: 0.5,
@@ -40,10 +40,10 @@ export default function Product({ product }: CartProductProps) {
           />
           <Typography sx={{ fontSize: 12, my: 1 }}>
             ${" "}
-            {product.discountPrice
+            {product?.discountPrice
               ? product.discountPrice
-              : product.regularPrice}{" "}
-            x {product.quantity}
+              : product?.regularPrice}{" "}
+            x {product?.quantity}
           </Typography>
           <Typography
             sx={{
@@ -53,9 +53,9 @@ export default function Product({ product }: CartProductProps) {
             }}
           >
             ${" "}
-            {product.discountPrice
+            {product?.discountPrice
               ? (product.discountPrice * product.quantity).toFixed(2)
-              : (product.regularPrice * product.quantity).toFixed(2)}
+              : (product?.regularPrice * product?.quantity).toFixed(2)}
           </Typography>
         </Box>
       </ListItem>
