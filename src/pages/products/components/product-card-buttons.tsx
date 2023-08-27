@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack, Tooltip, Typography } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 import { ProductProps, WishListCardProps } from "@/shared/types/product";
 import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
@@ -54,15 +54,33 @@ const ProductCardButtons = ({ product }: WishListCardProps | ProductProps) => {
         </>
       ) : null}
 
-      <Button
-        size="small"
-        variant="outlined"
-        aria-label="add"
-        onClick={handleAddToCart}
-        sx={{ padding: "2px", minWidth: "unset" }}
+      <Tooltip
+        title={
+          product.stock === 0
+            ? "Stock depleted"
+            : productInCart?.quantity === product.stock
+            ? "No more item in stock"
+            : ""
+        }
+        placement="bottom"
       >
-        <Add />
-      </Button>
+        <span>
+          <Button
+            disabled={
+              product.stock === 0 || productInCart?.quantity === product.stock
+                ? true
+                : false
+            }
+            size="small"
+            variant="outlined"
+            aria-label="add"
+            onClick={handleAddToCart}
+            sx={{ padding: "2px", minWidth: "unset" }}
+          >
+            <Add />
+          </Button>
+        </span>
+      </Tooltip>
     </Stack>
   );
 };

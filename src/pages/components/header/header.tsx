@@ -78,7 +78,7 @@ export default function Header() {
             >
               {HEADER_LINKS.map((option) => (
                 <NextLink key={option.id} href={option.route}>
-                  <Typography sx={{ fontSize: 15 }}>{option.name}</Typography>
+                  <Typography sx={{ fontSize: 14 }}>{option.name}</Typography>
                 </NextLink>
               ))}
             </Stack>

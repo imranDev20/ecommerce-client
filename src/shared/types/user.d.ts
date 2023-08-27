@@ -40,7 +40,7 @@ type UserWithWishlist = {
   email: string;
   firstName: string;
   lastName: string;
-  wishlistProducts: WishlistProduct[];
+  wishlistProducts: Partial<Product>[];
 };
 
 export type WishListProps = {

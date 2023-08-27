@@ -1,17 +1,5 @@
 import { Brand } from "./brand";
 
-type Attribute = {
-  name: string;
-  value: string[];
-  unit: string;
-  _id: string;
-};
-
-type ProductBrand = {
-  name: string;
-  id: string;
-};
-
 export type Category = {
   _id: string;
   name: string;
@@ -20,26 +8,36 @@ export type Category = {
   __v: number;
 };
 
-export type CategoryInProduct = {
-  id: string;
+export type Attributes = {
   name: string;
+  values: string[];
+  unit: string;
 };
 
 export type Product = {
+  _id: string;
   name: string;
   description: string;
+  images: string[];
   regularPrice: number;
   discountPrice: number;
-  images: string[];
-  unit: string;
-  brand: ProductBrand;
+  discountPercentage: number | null;
+  unit: "kg" | "litre" | "pcs" | "bag";
+  stock: number;
+  status: "in stock" | "out of stock" | "discontinued";
+  brand: {
+    name: string;
+    id: string;
+  };
   rating: number;
-  attributes: Attribute[];
-  category: CategoryInProduct;
-  _id: string;
+  attributes: Attributes[];
+  category: {
+    name: string;
+    id: string;
+  };
   createdAt: string;
   updatedAt: string;
-  __v: number;
+  _v: number;
 };
 
 export type ProductProps = {
@@ -66,24 +64,15 @@ export type ProductsCardProps = {
   error?: string;
 };
 
-export type WishlistProduct = {
-  _id: string;
-  name: string;
-  images: string[];
-  regularPrice: number;
-  discountPrice: number;
-  rating: number;
-};
-
 export type WishListCardProps = {
-  product: WishlistProduct;
+  product: Partial<Product>;
 };
 
-export type CartProduct = (Product | WishlistProduct) & {
+export type CartProduct = (Product | Partial<Product>) & {
   quantity: number;
 };
 
-export type CartPayload = Product | WishlistProduct;
+export type CartPayload = Product | Partial<Product>;
 
 export type CartProductProps = {
   product: CartProduct;

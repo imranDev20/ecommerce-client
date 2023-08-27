@@ -9,6 +9,8 @@ function WishListPage() {
     aggregate: "wishlist",
   });
 
+  console.log(user);
+
   const products = user?.wishlistProducts;
 
   return (
